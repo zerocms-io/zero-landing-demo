@@ -2,22 +2,22 @@
 // @zero:hidden
 import type { ImageMetadata } from "astro";
 import { Image } from "astro:assets";
+import { resolveAvatarColor, type AvatarColor } from "../lib/palette";
 
 interface Props {
   avatar?: ImageMetadata;
   initials: string;
-  avatarBg: string;
-  avatarInk: string;
+  color: AvatarColor;
   name?: string;
   fontSize: number;
 }
-const { avatar, initials, avatarBg, avatarInk, name, fontSize }: Props =
-  Astro.props;
+const { avatar, initials, color, name, fontSize }: Props = Astro.props;
+const { bg, ink } = resolveAvatarColor(color);
 ---
 
 <span
   class="avatar-inner"
-  style={`background:${avatarBg};color:${avatarInk};font-size:${fontSize}px`}
+  style={`background:${bg};color:${ink};font-size:${fontSize}px`}
 >
   {
     avatar ? (

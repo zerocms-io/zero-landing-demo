@@ -8,8 +8,7 @@
   bio: Ex-Headspace PM who believes the best interface is the one that gets out of your way. Keeps a 900-day meditation streak and refuses to gloat about it.
   initials: MC
   avatar: ./images/maya-chen.jpg
-  avatarBg: "#ffd7a8"
-  avatarInk: "#9a5b1a"
+  avatarColor: Peach
   group: leadership
   socials:
     - { label: X, href: "#" }
@@ -22,8 +21,7 @@
   bio: Built the first version of Pip in a weekend to nudge himself to drink water. Builds mechanical keyboards for fun and types faster than Pip can nudge.
   initials: TE
   avatar: ./images/theo-ellison.jpg
-  avatarBg: "#c9d4ff"
-  avatarInk: "#3a4aa0"
+  avatarColor: Periwinkle
   group: leadership
   socials:
     - { label: X, href: "#" }
@@ -35,8 +33,7 @@
   department: Design
   bio: Drew the very first Pip on a napkin. We kept the napkin.
   initials: PN
-  avatarBg: "#bfe6cd"
-  avatarInk: "#1e7a4e"
+  avatarColor: Mint
   group: flock
 
 - id: sam-okafor
@@ -45,8 +42,7 @@
   department: Community
   bio: Reads every single support email. Replies with actual sentences.
   initials: SO
-  avatarBg: "#ffcfc0"
-  avatarInk: "#b0432a"
+  avatarColor: Coral
   group: flock
 
 - id: lena-ruiz
@@ -55,8 +51,7 @@
   department: Engineering
   bio: Makes the streaks sync in milliseconds. Runs ultramarathons to relax.
   initials: LR
-  avatarBg: "#ffe1a8"
-  avatarInk: "#9a6a10"
+  avatarColor: Amber
   group: flock
 
 - id: femi-adeyemi
@@ -65,8 +60,7 @@
   department: Data
   bio: Finds the exact minute you're most likely to say yes. Slightly spooky.
   initials: FA
-  avatarBg: "#d9c9ff"
-  avatarInk: "#5b3fd6"
+  avatarColor: Lavender
   group: flock
 
 - id: hana-kim
@@ -75,8 +69,7 @@
   department: Marketing
   bio: Wrote every word of onboarding. Rewrites it when it's not warm enough.
   initials: HK
-  avatarBg: "#bfe6cd"
-  avatarInk: "#1e7a4e"
+  avatarColor: Mint
   group: flock
 
 - id: oskar-braun
@@ -85,8 +78,7 @@
   department: Support
   bio: Fluent in five languages and infinite patience.
   initials: OB
-  avatarBg: "#c9d4ff"
-  avatarInk: "#3a4aa0"
+  avatarColor: Periwinkle
   group: flock
 
 - id: gita-tan
@@ -95,6 +87,5 @@
   department: Operations
   bio: Keeps the whole flock flying in formation. Loves a good spreadsheet.
   initials: GT
-  avatarBg: "#ffcfc0"
-  avatarInk: "#b0432a"
+  avatarColor: Coral
   group: flock

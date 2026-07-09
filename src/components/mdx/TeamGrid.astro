@@ -21,8 +21,7 @@ const flock = (await getTeam()).filter((p) => p.data.group === "flock");
             <Avatar
               avatar={p.data.avatar}
               initials={p.data.initials}
-              avatarBg={p.data.avatarBg}
-              avatarInk={p.data.avatarInk}
+              color={p.data.avatarColor}
               name={p.data.name}
               fontSize={26}
             />

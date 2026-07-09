@@ -1,11 +1,14 @@
 import { defineCollection, reference } from "astro:content";
 import { z } from "astro/zod";
 import { file, glob } from "astro/loaders";
+import { avatarColors } from "./lib/palette";
 
 // ── Shared sub-schemas ────────────────────────────────────────────────────────
 const link = z.object({ label: z.string(), href: z.string() });
 const sectionHeader = z.object({ eyebrow: z.string(), title: z.string() });
 const accent = z.enum(["Coral", "Grape", "Forest", "Ocean"]);
+// Named avatar color picked from the shared site palette (see lib/palette.ts).
+const avatarColor = z.enum(avatarColors);
 const ctaBand = z.object({
   title: z.string(),
   body: z.string(),
@@ -88,8 +91,7 @@ const home = defineCollection({
           name: z.string(),
           role: z.string(),
           initials: z.string(),
-          avatarBg: z.string(),
-          avatarInk: z.string(),
+          avatarColor: avatarColor.default("Peach"),
           featured: z.boolean().default(false),
           rating: z.number().min(0).max(5).default(5),
         }),
@@ -151,8 +153,7 @@ const team = defineCollection({
       bio: z.string(),
       initials: z.string(),
       avatar: image().optional(), // optional photo; falls back to initials
-      avatarBg: z.string(),
-      avatarInk: z.string(),
+      avatarColor: avatarColor.default("Peach"),
       group: z.enum(["leadership", "flock"]),
       socials: z.array(link).default([]),
     }),

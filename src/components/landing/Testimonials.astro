@@ -1,12 +1,12 @@
 ---
 // @zero:hidden
+import { resolveAvatarColor, type AvatarColor } from "../../lib/palette";
 interface Item {
   quote: string;
   name: string;
   role: string;
   initials: string;
-  avatarBg: string;
-  avatarInk: string;
+  avatarColor: AvatarColor;
   featured?: boolean;
   rating: number;
 }
@@ -23,14 +23,16 @@ const { testimonials } = Astro.props;
   </div>
   <div class="grid">
     {
-      testimonials.items.map((t) => (
+      testimonials.items.map((t) => {
+        const swatch = resolveAvatarColor(t.avatarColor);
+        return (
         <figure class:list={["card", { featured: t.featured }]}>
           <div class="stars">{"★".repeat(t.rating)}</div>
           <blockquote>“{t.quote}”</blockquote>
           <figcaption>
             <span
               class="avatar"
-              style={`background:${t.avatarBg};color:${t.avatarInk}`}
+              style={`background:${swatch.bg};color:${swatch.ink}`}
             >
               {t.initials}
             </span>
@@ -40,7 +42,8 @@ const { testimonials } = Astro.props;
             </span>
           </figcaption>
         </figure>
-      ))
+        );
+      })
     }
   </div>
 </section>

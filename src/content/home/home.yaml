@@ -93,21 +93,18 @@ testimonials:
       name: Jordan M.
       role: Nurse, Portland
       initials: JM
-      avatarBg: "#ffd7a8"
-      avatarInk: "#9a5b1a"
+      avatarColor: Peach
     - quote: Pip is unreasonably charming. I actually look forward to checking off my morning walk now.
       name: Aïcha R.
       role: Designer, Lyon
       initials: AR
-      avatarBg: "#c9d4ff"
-      avatarInk: "#3a4aa0"
+      avatarColor: Periwinkle
       featured: true
     - quote: I've tried them all. This is the only one still on my home screen six months later.
       name: Deepak K.
       role: Teacher, Austin
       initials: DK
-      avatarBg: "#bfe6cd"
-      avatarInk: "#1e7a4e"
+      avatarColor: Mint
 
 teamTeaser:
   eyebrow: The humans behind Pip
