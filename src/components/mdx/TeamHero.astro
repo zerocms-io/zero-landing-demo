@@ -25,7 +25,7 @@ const parts = m ? { before: m[1], hl: m[2], after: m[3] } : null;
         )
       }
     </h1>
-    <p><slot /></p>
+    <div class="lede"><slot /></div>
   </div>
 </section>
 
@@ -79,11 +79,15 @@ const parts = m ? { before: m[1], hl: m[2], after: m[3] } : null;
     margin: 22px 0 0;
     line-height: 0.98;
   }
-  p {
+  .lede {
     font-size: 20px;
     line-height: 1.5;
     color: #5c554d;
     max-width: 560px;
     margin: 24px auto 0;
+  }
+  /* MDX wraps slotted body text in its own <p>; strip its default margins. */
+  .lede :global(p) {
+    margin: 0;
   }
 </style>
