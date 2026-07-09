@@ -2,16 +2,15 @@
 interface Props {
   number: number;
   title: string;
-  body: string;
 }
-const { number, title, body }: Props = Astro.props;
+const { number, title }: Props = Astro.props;
 ---
 
 <div class="step">
   <span class="num">{number}</span>
   <div>
     <p class="title">{title}</p>
-    <p class="body">{body}</p>
+    <div class="body"><slot /></div>
   </div>
 </div>
 
@@ -43,7 +42,8 @@ const { number, title, body }: Props = Astro.props;
     font-size: 19px;
     margin: 0 0 4px;
   }
-  .body {
+  /* Slotted markdown paragraph — override .prose defaults */
+  .body :global(p) {
     font-size: 15.5px;
     line-height: 1.55;
     color: #5c554d;

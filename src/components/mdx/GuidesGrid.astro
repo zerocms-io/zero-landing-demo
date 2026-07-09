@@ -1,0 +1,32 @@
+---
+import { getCollection } from "astro:content";
+import GuideCard from "../GuideCard.astro";
+
+const guides = (await getCollection("guides")).sort(
+  (a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime(),
+);
+---
+
+<section class="grid-wrap">
+  <div class="grid">
+    {guides.map((g) => <GuideCard guide={g} />)}
+  </div>
+</section>
+
+<style>
+  .grid-wrap {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 40px 32px 88px;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  @media (max-width: 760px) {
+    .grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

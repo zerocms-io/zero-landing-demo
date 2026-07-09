@@ -1,0 +1,73 @@
+---
+title: "Pip — The team"
+description: "The tiny, remote-first team building the gentlest way to keep a habit."
+---
+
+import TeamHero from '../../components/mdx/TeamHero.astro';
+import Values from '../../components/mdx/Values.astro';
+import Leadership from '../../components/mdx/Leadership.astro';
+import TeamGrid from '../../components/mdx/TeamGrid.astro';
+import OpenRoles from '../../components/mdx/OpenRoles.astro';
+import CtaBand from '../../components/mdx/CtaBand.astro';
+
+<TeamHero
+  hero={{
+    badge: "We're a team of 9 (plus one little bird)",
+    title: "The humans behind your {gentlest} habit.",
+    body: "We're a tiny, remote-first team obsessed with one idea — that progress should feel kind. Here's who's sweating the small stuff.",
+  }}
+/>
+
+<Values
+  values={[
+    {
+      title: "Kind by default",
+      body: 'Every decision starts with "is this gentle?" — for our users and for each other.',
+      icon: "🕊",
+    },
+    {
+      title: "Start tiny",
+      body: "We ship small, learn fast, and let good things compound — the same way habits do.",
+      icon: "🌱",
+      iconBg: "#e7f5ec",
+    },
+    {
+      title: "Answer every human",
+      body: "Real replies from real people. No bots, no canned scripts, no ticket numbers.",
+      icon: "✉",
+      iconBg: "#e9ecff",
+    },
+  ]}
+/>
+
+<Leadership eyebrow="Leadership" />
+
+<TeamGrid
+  eyebrow="The rest of the flock"
+  hiringCard={{ title: "This could be you", body: "We're hiring gentle, curious people." }}
+/>
+
+<OpenRoles
+  roles={{
+    eyebrow: "Come build with us",
+    title: "Open roles",
+    note: "Remote-first, four-day weeks, and a founder who reads every application.",
+    items: [
+      { title: "Senior iOS Engineer", department: "Engineering", location: "Remote", type: "Full-time", href: "#" },
+      { title: "Product Designer", department: "Design", location: "Remote (EU/US)", type: "Full-time", href: "#" },
+      { title: "Community Lead", department: "Community", location: "Remote", type: "Part-time", href: "#" },
+    ],
+  }}
+/>
+
+<CtaBand
+  contained
+  title="Like how we think?"
+  body="Try the app the whole flock pours its heart into. It's free, and it takes about a minute."
+  variant="accent"
+  showMascot={false}
+  buttons={[
+    { label: "Get Pip free", href: "/#cta" },
+    { label: "See open roles", href: "#" },
+  ]}
+/>

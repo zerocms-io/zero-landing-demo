@@ -117,37 +117,15 @@ const home = defineCollection({
   }),
 });
 
-// ── 3. teamPage — the entire team page (singleton → `team`) ───────────────────
-const teamPage = defineCollection({
-  loader: glob({ pattern: "*.yaml", base: "./src/content/team-page" }),
+// ── 3. pages — composed marketing pages (MDX body of reusable blocks) ─────────
+// Thin frontmatter (metadata only); the page is authored in the body as a stack
+// of block components. One catch-all route (src/pages/[...slug].astro) renders
+// any entry, so editors can add new pages without a developer.
+const pages = defineCollection({
+  loader: glob({ pattern: "*.mdx", base: "./src/content/pages" }),
   schema: z.object({
-    hero: z.object({ badge: z.string(), title: z.string(), body: z.string() }),
-    values: z.array(
-      z.object({
-        title: z.string(),
-        body: z.string(),
-        icon: z.string(),
-        iconBg: z.string().optional(),
-      }),
-    ),
-    leadershipEyebrow: z.string(),
-    flockEyebrow: z.string(),
-    hiringCard: z.object({ title: z.string(), body: z.string() }),
-    roles: z.object({
-      eyebrow: z.string(),
-      title: z.string(),
-      note: z.string(),
-      items: z.array(
-        z.object({
-          title: z.string(),
-          department: z.string(),
-          location: z.string(),
-          type: z.enum(["Full-time", "Part-time", "Contract"]),
-          href: z.string().default("#"),
-        }),
-      ),
-    }),
-    cta: ctaBand,
+    title: z.string(),
+    description: z.string().optional(),
   }),
 });
 
@@ -198,4 +176,4 @@ const guides = defineCollection({
   }),
 });
 
-export const collections = { settings, home, teamPage, team, guides };
+export const collections = { settings, home, pages, team, guides };

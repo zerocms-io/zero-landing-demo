@@ -1,13 +1,9 @@
 ---
-interface Props {
-  text: string;
-}
-const { text }: Props = Astro.props;
 ---
 
 <div class="check">
   <span class="box">✓</span>
-  <span class="text">{text}</span>
+  <div class="text"><slot /></div>
 </div>
 
 <style>
@@ -32,5 +28,11 @@ const { text }: Props = Astro.props;
     font-size: 16px;
     color: #2f5a43;
     font-weight: 500;
+  }
+  /* If the editor writes block content, neutralise the wrapping paragraph */
+  .text :global(p) {
+    margin: 0;
+    font: inherit;
+    color: inherit;
   }
 </style>
