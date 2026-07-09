@@ -11,12 +11,11 @@ import OpenRoles from '../../components/mdx/OpenRoles.astro';
 import CtaBand from '../../components/mdx/CtaBand.astro';
 
 <TeamHero
-  hero={{
-    badge: "We're a team of 9 (plus one little bird)",
-    title: "The humans behind your {gentlest} habit.",
-    body: "We're a tiny, remote-first team obsessed with one idea — that progress should feel kind. Here's who's sweating the small stuff.",
-  }}
-/>
+  badge="We're a team of 9 (plus one little bird)"
+  title="The humans behind your {gentlest} habit."
+>
+  We're a tiny, remote-first team obsessed with one idea — that progress should feel kind. Here's who's sweating the small stuff.
+</TeamHero>
 
 <Values
   values={[
@@ -48,26 +47,25 @@ import CtaBand from '../../components/mdx/CtaBand.astro';
 />
 
 <OpenRoles
-  roles={{
-    eyebrow: "Come build with us",
-    title: "Open roles",
-    note: "Remote-first, four-day weeks, and a founder who reads every application.",
-    items: [
-      { title: "Senior iOS Engineer", department: "Engineering", location: "Remote", type: "Full-time", href: "#" },
-      { title: "Product Designer", department: "Design", location: "Remote (EU/US)", type: "Full-time", href: "#" },
-      { title: "Community Lead", department: "Community", location: "Remote", type: "Part-time", href: "#" },
-    ],
-  }}
+  eyebrow="Come build with us"
+  title="Open roles"
+  note="Remote-first, four-day weeks, and a founder who reads every application."
+  items={[
+    { title: "Senior iOS Engineer", department: "Engineering", location: "Remote", type: "Full-time", href: "#" },
+    { title: "Product Designer", department: "Design", location: "Remote (EU/US)", type: "Full-time", href: "#" },
+    { title: "Community Lead", department: "Community", location: "Remote", type: "Part-time", href: "#" },
+  ]}
 />
 
 <CtaBand
   contained
   title="Like how we think?"
-  body="Try the app the whole flock pours its heart into. It's free, and it takes about a minute."
   variant="accent"
   showMascot={false}
   buttons={[
     { label: "Get Pip free", href: "/#cta" },
     { label: "See open roles", href: "#" },
   ]}
-/>
+>
+  Try the app the whole flock pours its heart into. It's free, and it takes about a minute.
+</CtaBand>

@@ -1,33 +1,31 @@
 ---
 interface Props {
-  roles: {
-    eyebrow: string;
+  eyebrow: string;
+  title: string;
+  note: string;
+  items: {
     title: string;
-    note: string;
-    items: {
-      title: string;
-      department: string;
-      location: string;
-      type: string;
-      href: string;
-    }[];
-  };
+    department: string;
+    location: string;
+    type: string;
+    href: string;
+  }[];
 }
-const { roles } = Astro.props;
+const { eyebrow, title, note, items } = Astro.props;
 ---
 
 <section class="roles">
   <div class="panel">
     <div class="head">
       <div>
-        <p class="eyebrow">{roles.eyebrow}</p>
-        <h2>{roles.title}</h2>
+        <p class="eyebrow">{eyebrow}</p>
+        <h2>{title}</h2>
       </div>
-      <p class="note">{roles.note}</p>
+      <p class="note">{note}</p>
     </div>
     <div class="list">
       {
-        roles.items.map((r) => (
+        items.map((r) => (
           <a class="role" href={r.href}>
             <div>
               <p class="title">{r.title}</p>

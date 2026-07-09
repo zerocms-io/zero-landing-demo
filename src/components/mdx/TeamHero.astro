@@ -1,16 +1,17 @@
 ---
 interface Props {
-  hero: { badge: string; title: string; body: string };
+  badge: string;
+  title: string;
 }
-const { hero } = Astro.props;
-const m = hero.title.match(/^(.*)\{(.+?)\}(.*)$/);
+const { badge, title } = Astro.props;
+const m = title.match(/^(.*)\{(.+?)\}(.*)$/);
 const parts = m ? { before: m[1], hl: m[2], after: m[3] } : null;
 ---
 
 <section class="hero">
   <span class="blob"></span>
   <div class="inner">
-    <span class="badge"><span class="dot"></span>{hero.badge}</span>
+    <span class="badge"><span class="dot"></span>{badge}</span>
     <h1>
       {
         parts ? (
@@ -20,11 +21,11 @@ const parts = m ? { before: m[1], hl: m[2], after: m[3] } : null;
             {parts.after}
           </>
         ) : (
-          hero.title
+          title
         )
       }
     </h1>
-    <p>{hero.body}</p>
+    <p><slot /></p>
   </div>
 </section>
 

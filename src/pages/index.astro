@@ -29,11 +29,12 @@ const d = home!.data;
   <section id="cta" class="cta-wrap">
     <CtaBand
       title={d.cta.title}
-      body={d.cta.body}
       buttons={d.cta.buttons}
       variant={d.cta.variant}
       showMascot={d.cta.showMascot}
-    />
+    >
+      {d.cta.body}
+    </CtaBand>
   </section>
 </BaseLayout>
 
