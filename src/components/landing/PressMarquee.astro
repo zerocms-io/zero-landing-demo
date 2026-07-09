@@ -1,0 +1,61 @@
+---
+// @zero:hidden
+interface Props {
+  press: { eyebrow: string; logos: string[] };
+}
+const { press } = Astro.props;
+const loop = [...press.logos, ...press.logos];
+---
+
+<section class="press">
+  <p class="eyebrow">{press.eyebrow}</p>
+  <div class="track-mask">
+    <div class="track">
+      {loop.map((name) => <span>{name}</span>)}
+    </div>
+  </div>
+</section>
+
+<style>
+  .press {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 20px 32px 56px;
+  }
+  .eyebrow {
+    text-align: center;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #a49a8f;
+    margin-bottom: 24px;
+  }
+  .track-mask {
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(
+      90deg,
+      transparent,
+      #000 12%,
+      #000 88%,
+      transparent
+    );
+    mask-image: linear-gradient(
+      90deg,
+      transparent,
+      #000 12%,
+      #000 88%,
+      transparent
+    );
+  }
+  .track {
+    display: flex;
+    gap: 56px;
+    width: max-content;
+    animation: marquee 26s linear infinite;
+    font-family: "Bricolage Grotesque", system-ui, sans-serif;
+    font-weight: 700;
+    font-size: 22px;
+    color: #b6ac9f;
+  }
+</style>

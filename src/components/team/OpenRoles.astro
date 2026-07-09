@@ -1,0 +1,116 @@
+---
+// @zero:hidden
+interface Props {
+  roles: {
+    eyebrow: string;
+    title: string;
+    note: string;
+    items: {
+      title: string;
+      department: string;
+      location: string;
+      type: string;
+      href: string;
+    }[];
+  };
+}
+const { roles } = Astro.props;
+---
+
+<section class="roles">
+  <div class="panel">
+    <div class="head">
+      <div>
+        <p class="eyebrow">{roles.eyebrow}</p>
+        <h2>{roles.title}</h2>
+      </div>
+      <p class="note">{roles.note}</p>
+    </div>
+    <div class="list">
+      {
+        roles.items.map((r) => (
+          <a class="role" href={r.href}>
+            <div>
+              <p class="title">{r.title}</p>
+              <p class="meta">
+                {r.department} · {r.location} · {r.type}
+              </p>
+            </div>
+            <span class="apply">Apply →</span>
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .roles {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 64px 32px 40px;
+  }
+  .panel {
+    background: #e7f5ec;
+    border-radius: 28px;
+    padding: 40px;
+  }
+  .head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-bottom: 26px;
+  }
+  .eyebrow {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #1e7a4e;
+    margin-bottom: 10px;
+  }
+  h2 {
+    font-size: 38px;
+  }
+  .note {
+    font-size: 15px;
+    color: #3f6b53;
+    max-width: 320px;
+  }
+  .list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .role {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    background: #fff;
+    border-radius: 16px;
+    padding: 20px 24px;
+    color: #2b2622;
+  }
+  .title {
+    font-family: "Bricolage Grotesque", system-ui, sans-serif;
+    font-weight: 700;
+    font-size: 19px;
+  }
+  .meta {
+    font-size: 14px;
+    color: #5c554d;
+    margin-top: 2px;
+  }
+  .apply {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--accent-ink, #c63f1b);
+    font-weight: 700;
+    font-size: 15px;
+  }
+</style>

@@ -1,0 +1,261 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { getEntry } from 'astro:content';
+import BaseLayout from './BaseLayout.astro';
+import CtaBand from '../components/CtaBand.astro';
+import Avatar from '../components/Avatar.astro';
+
+interface Props {
+  guide: CollectionEntry<'guides'>;
+}
+const { guide } = Astro.props;
+const d = guide.data;
+
+const author = await getEntry(d.author);
+const related = d.related ? await getEntry(d.related) : null;
+
+const dateLabel = d.publishDate.toLocaleDateString('en-US', {
+  month: 'short',
+  day: 'numeric',
+  year: 'numeric',
+});
+---
+
+<BaseLayout title={`Pip — ${d.title.replace(/\.$/, '')}`} description={d.tagline}>
+  <article class="header">
+    <a class="back" href="/">← Back home</a>
+    <div class="tags">
+      <span class:list={['pill', d.categoryTone]}>{d.category}</span>
+      <span class="read">{d.readTime}</span>
+    </div>
+    <h1>{d.title}</h1>
+    <p class="tagline">{d.tagline}</p>
+    <div class="author">
+      <span class="avatar">
+        <Avatar
+          avatar={author!.data.avatar}
+          initials={author!.data.initials}
+          avatarBg={author!.data.avatarBg}
+          avatarInk={author!.data.avatarInk}
+          name={author!.data.name}
+          fontSize={17}
+        />
+      </span>
+      <div>
+        <p class="name">{author!.data.name}</p>
+        <p class="meta">{author!.data.role} — {dateLabel}</p>
+      </div>
+    </div>
+    {
+      d.heroCaption && (
+        <div class:list={['hero-fig', `v-${d.heroVariant}`]}>
+          <div class="bars">
+            <span style="height:60px"></span>
+            <span style="height:96px"></span>
+            <span style="height:130px"></span>
+            <span style="height:170px"></span>
+            <span style="height:210px"></span>
+          </div>
+          <span class="cap">{d.heroCaption}</span>
+        </div>
+      )
+    }
+  </article>
+
+  <div class="prose"><slot /></div>
+
+  <section class="article-cta">
+    <CtaBand
+      variant="dark"
+      title="Ready to start one tiny habit?"
+      body="Put it to work in about a minute. Pip is free, gentle, and quietly effective."
+      buttons={[{ label: 'Get Pip free →', href: '/#cta' }]}
+    />
+  </section>
+
+  {
+    related && (
+      <section class="related">
+        <p class="kicker">Keep reading</p>
+        <a class="rel-card" href={`/guides/${related.id}`}>
+          <div>
+            <p class="rel-cat">{related.data.category}</p>
+            <p class="rel-title">{related.data.title.replace(/\.$/, '')}</p>
+          </div>
+          <span class="arrow">→</span>
+        </a>
+      </section>
+    )
+  }
+</BaseLayout>
+
+<style>
+  .header {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 64px 32px 0;
+  }
+  .back {
+    font-size: 14px;
+    font-weight: 600;
+    color: #8a827a;
+  }
+  .tags {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 26px 0 18px;
+  }
+  .pill {
+    font-size: 12.5px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 6px 12px;
+    border-radius: 999px;
+  }
+  .pill.accent {
+    background: var(--accent-soft, #ffe1d3);
+    color: var(--accent-ink, #c63f1b);
+  }
+  .pill.green {
+    background: #e7f5ec;
+    color: #1e7a4e;
+  }
+  .read {
+    font-size: 14px;
+    color: #8a827a;
+  }
+  h1 {
+    font-size: clamp(38px, 6vw, 56px);
+    line-height: 1.02;
+  }
+  .tagline {
+    font-size: 21px;
+    line-height: 1.5;
+    color: #5c554d;
+    margin-top: 20px;
+  }
+  .author {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    margin-top: 28px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid rgba(43, 38, 34, 0.1);
+  }
+  .avatar {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+  .name {
+    font-weight: 700;
+    font-size: 15px;
+  }
+  .meta {
+    font-size: 13.5px;
+    color: #8a827a;
+  }
+
+  .hero-fig {
+    position: relative;
+    margin: 36px 0 8px;
+    border-radius: 24px;
+    overflow: hidden;
+    height: 340px;
+    display: grid;
+    place-items: center;
+  }
+  .v-accent {
+    background: linear-gradient(135deg, var(--accent, #ff6a3d), var(--accent-soft, #ffe1d3));
+  }
+  .v-forest {
+    background: linear-gradient(135deg, #2fa36b, #d7f0e2);
+  }
+  .v-grape {
+    background: linear-gradient(135deg, #7c5cff, #e9e2ff);
+  }
+  .bars {
+    display: flex;
+    gap: 10px;
+    align-items: flex-end;
+  }
+  .bars span {
+    width: 22px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.9);
+  }
+  .bars span:nth-child(n + 3) {
+    background: #fff;
+  }
+  .cap {
+    position: absolute;
+    bottom: 14px;
+    right: 16px;
+    background: rgba(33, 30, 27, 0.55);
+    color: #fff;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 5px 10px;
+    border-radius: 8px;
+    backdrop-filter: blur(4px);
+  }
+
+  .prose {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 24px 32px 0;
+  }
+
+  .article-cta {
+    max-width: 680px;
+    margin: 56px auto 0;
+    padding: 0 32px;
+  }
+  .related {
+    max-width: 680px;
+    margin: 44px auto 0;
+    padding: 0 32px 72px;
+  }
+  .kicker {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #a49a8f;
+    margin-bottom: 16px;
+  }
+  .rel-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    background: #fff;
+    border: 1px solid rgba(43, 38, 34, 0.08);
+    border-radius: 20px;
+    padding: 22px 26px;
+    color: #2b2622;
+  }
+  .rel-cat {
+    font-size: 12.5px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--accent-ink, #c63f1b);
+    margin-bottom: 6px;
+  }
+  .rel-title {
+    font-family: 'Bricolage Grotesque', system-ui, sans-serif;
+    font-weight: 700;
+    font-size: 21px;
+  }
+  .arrow {
+    flex-shrink: 0;
+    color: var(--accent-ink, #c63f1b);
+    font-weight: 700;
+    font-size: 18px;
+  }
+</style>

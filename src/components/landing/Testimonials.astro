@@ -1,0 +1,133 @@
+---
+// @zero:hidden
+interface Item {
+  quote: string;
+  name: string;
+  role: string;
+  initials: string;
+  avatarBg: string;
+  avatarInk: string;
+  featured?: boolean;
+  rating: number;
+}
+interface Props {
+  testimonials: { header: { eyebrow: string; title: string }; items: Item[] };
+}
+const { testimonials } = Astro.props;
+---
+
+<section class="testimonials">
+  <div class="head">
+    <p class="eyebrow">{testimonials.header.eyebrow}</p>
+    <h2>{testimonials.header.title}</h2>
+  </div>
+  <div class="grid">
+    {
+      testimonials.items.map((t) => (
+        <figure class:list={["card", { featured: t.featured }]}>
+          <div class="stars">{"★".repeat(t.rating)}</div>
+          <blockquote>“{t.quote}”</blockquote>
+          <figcaption>
+            <span
+              class="avatar"
+              style={`background:${t.avatarBg};color:${t.avatarInk}`}
+            >
+              {t.initials}
+            </span>
+            <span class="who">
+              <span class="name">{t.name}</span>
+              <span class="role">{t.role}</span>
+            </span>
+          </figcaption>
+        </figure>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  .testimonials {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 92px 32px;
+  }
+  .head {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto 48px;
+  }
+  .eyebrow {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent-ink, #c63f1b);
+    margin-bottom: 14px;
+  }
+  .head h2 {
+    font-size: clamp(32px, 4.5vw, 48px);
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+  }
+  .card {
+    margin: 0;
+    background: #fff;
+    border: 1px solid rgba(43, 38, 34, 0.08);
+    border-radius: 24px;
+    padding: 28px;
+    box-shadow: 0 14px 40px -26px rgba(43, 38, 34, 0.35);
+  }
+  .card.featured {
+    background: var(--accent-soft, #ffe1d3);
+    border: none;
+    box-shadow: none;
+  }
+  .stars {
+    color: var(--accent, #ff6a3d);
+    font-size: 17px;
+    margin-bottom: 14px;
+  }
+  blockquote {
+    margin: 0;
+    font-size: 17px;
+    line-height: 1.55;
+    font-weight: 500;
+  }
+  figcaption {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 22px;
+  }
+  .avatar {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    font-weight: 700;
+  }
+  .who {
+    display: flex;
+    flex-direction: column;
+  }
+  .name {
+    font-weight: 700;
+    font-size: 15px;
+  }
+  .role {
+    font-size: 13px;
+    color: #8a827a;
+  }
+  .featured .role {
+    color: #8a5f4f;
+  }
+  @media (max-width: 900px) {
+    .grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

@@ -1,0 +1,128 @@
+---
+// @zero:hidden
+import { getTeam } from "../../lib/team";
+import Avatar from "../Avatar.astro";
+
+interface Props {
+  teamTeaser: {
+    eyebrow: string;
+    title: string;
+    body: string;
+    cta: { label: string; href: string };
+    avatarCount: number;
+  };
+}
+const { teamTeaser } = Astro.props;
+
+const people = await getTeam();
+const shown = people.slice(0, teamTeaser.avatarCount);
+const remaining = people.length - shown.length;
+---
+
+<section id="team" class="teaser">
+  <div class="inner">
+    <div class="copy">
+      <p class="eyebrow">{teamTeaser.eyebrow}</p>
+      <h2>{teamTeaser.title}</h2>
+      <p class="body">{teamTeaser.body}</p>
+      <a class="cta" href={teamTeaser.cta.href}>{teamTeaser.cta.label}</a>
+    </div>
+    <div class="avatars">
+      {
+        shown.map((p) => (
+          <span class="av">
+            <Avatar
+              avatar={p.data.avatar}
+              initials={p.data.initials}
+              avatarBg={p.data.avatarBg}
+              avatarInk={p.data.avatarInk}
+              name={p.data.name}
+              fontSize={28}
+            />
+          </span>
+        ))
+      }
+      {remaining > 0 && <span class="av more">+{remaining}</span>}
+    </div>
+  </div>
+</section>
+
+<style>
+  .teaser {
+    background: #e9ecff;
+    padding: 80px 0;
+  }
+  .inner {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 32px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 40px;
+    align-items: center;
+  }
+  .copy {
+    max-width: 520px;
+  }
+  .eyebrow {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #3a4aa0;
+    margin-bottom: 14px;
+  }
+  h2 {
+    font-size: clamp(32px, 4vw, 44px);
+  }
+  .body {
+    font-size: 17px;
+    color: #4a4a63;
+    line-height: 1.55;
+    margin-top: 16px;
+  }
+  .cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    margin-top: 24px;
+    background: #211e1b;
+    color: #fff;
+    font-weight: 700;
+    font-size: 16px;
+    padding: 14px 24px;
+    border-radius: 999px;
+  }
+  .avatars {
+    display: flex;
+    align-items: center;
+  }
+  .av {
+    width: 84px;
+    height: 84px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 4px solid #e9ecff;
+  }
+  .av + .av {
+    margin-left: -22px;
+  }
+  .av.more {
+    display: grid;
+    place-items: center;
+    background: #fff;
+    color: #3a4aa0;
+    font-family: "Bricolage Grotesque", system-ui, sans-serif;
+    font-weight: 800;
+    font-size: 20px;
+  }
+  @media (max-width: 760px) {
+    .inner {
+      grid-template-columns: 1fr;
+    }
+    .avatars {
+      flex-wrap: wrap;
+      row-gap: 12px;
+    }
+  }
+</style>

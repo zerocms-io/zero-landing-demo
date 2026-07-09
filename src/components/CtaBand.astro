@@ -1,0 +1,157 @@
+---
+// @zero:hidden
+import { getEntry } from "astro:content";
+import PipMascot from "./PipMascot.astro";
+
+interface Props {
+  title: string;
+  body: string;
+  buttons: { label: string; href: string }[];
+  variant?: "accent" | "dark";
+  showMascot?: boolean;
+}
+const {
+  title,
+  body,
+  buttons,
+  variant = "accent",
+  showMascot = false,
+}: Props = Astro.props;
+
+const settings = await getEntry("settings", "general");
+const mascot =
+  showMascot && settings!.data.theme.showMascot && variant === "accent";
+---
+
+<div class:list={["band", variant]}>
+  {
+    variant === "accent" && (
+      <>
+        <span class="blob a" />
+        <span class="blob b" />
+      </>
+    )
+  }
+  {
+    mascot && (
+      <div class="mascot-wrap">
+        <PipMascot scale={0.7} cheeks={false} />
+      </div>
+    )
+  }
+  {variant === "accent" ? <h2>{title}</h2> : <h3>{title}</h3>}
+  <p>{body}</p>
+  <div class="buttons">
+    {
+      buttons.map((b, i) => (
+        <a
+          href={b.href}
+          class:list={[
+            "btn",
+            variant === "dark" ? "accent" : i === 0 ? "dark" : "white",
+          ]}
+        >
+          {b.label}
+        </a>
+      ))
+    }
+  </div>
+</div>
+
+<style>
+  .band {
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+  }
+  .band.accent {
+    background: var(--accent, #ff6a3d);
+    border-radius: 36px;
+    padding: 68px 40px;
+    box-shadow: 0 30px 60px -30px var(--accent, #ff6a3d);
+  }
+  .band.dark {
+    background: #211e1b;
+    border-radius: 26px;
+    padding: 40px;
+  }
+
+  .blob {
+    position: absolute;
+    border-radius: 50%;
+  }
+  .blob.a {
+    top: -40px;
+    left: -30px;
+    width: 180px;
+    height: 180px;
+    background: rgba(255, 255, 255, 0.12);
+  }
+  .blob.b {
+    bottom: -60px;
+    right: -20px;
+    width: 220px;
+    height: 220px;
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .mascot-wrap {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 22px;
+  }
+
+  h2 {
+    position: relative;
+    font-size: clamp(38px, 5.5vw, 56px);
+    color: #fff;
+  }
+  h3 {
+    font-size: 28px;
+    color: #fdf7ec;
+  }
+  .accent p {
+    position: relative;
+    font-size: 19px;
+    color: rgba(255, 255, 255, 0.92);
+    margin: 18px auto 32px;
+    max-width: 440px;
+  }
+  .dark p {
+    font-size: 16px;
+    color: #c9c0b4;
+    margin: 12px auto 22px;
+    max-width: 380px;
+    line-height: 1.5;
+  }
+
+  .buttons {
+    position: relative;
+    display: flex;
+    gap: 14px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 700;
+    font-size: 16px;
+    padding: 15px 26px;
+    border-radius: 999px;
+  }
+  .btn.dark {
+    background: #211e1b;
+    color: #fff;
+  }
+  .btn.white {
+    background: #fff;
+    color: #2b2622;
+  }
+  .btn.accent {
+    background: var(--accent, #ff6a3d);
+    color: #fff;
+  }
+</style>

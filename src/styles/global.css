@@ -1,0 +1,124 @@
+/* ── Global reset & base type (ported from the Pip design comps) ────────────── */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: 'Instrument Sans', system-ui, sans-serif;
+  color: #2b2622;
+  background: #fcf6ec;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+a {
+  color: var(--accent-ink, #c63f1b);
+  text-decoration: none;
+}
+a:hover {
+  color: var(--accent, #ff6a3d);
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: 'Bricolage Grotesque', system-ui, sans-serif;
+  margin: 0;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.02;
+  text-wrap: balance;
+}
+
+p {
+  margin: 0;
+  text-wrap: pretty;
+}
+
+details summary {
+  list-style: none;
+  cursor: pointer;
+}
+details summary::-webkit-details-marker {
+  display: none;
+}
+
+/* Highlighter underline used on hero headline emphasis */
+.hl {
+  background: linear-gradient(transparent 62%, var(--accent-soft, #ffe1d3) 62%);
+  padding: 0 4px;
+  border-radius: 4px;
+}
+
+/* ── Keyframes ──────────────────────────────────────────────────────────────── */
+@keyframes pipbob {
+  0%, 100% { transform: translateY(0) rotate(-2deg); }
+  50% { transform: translateY(-10px) rotate(2deg); }
+}
+@keyframes floaty {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-14px); }
+}
+@keyframes floaty2 {
+  0%, 100% { transform: translateY(0) rotate(-6deg); }
+  50% { transform: translateY(-10px) rotate(-6deg); }
+}
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* ── Article prose (guide bodies) ───────────────────────────────────────────── */
+.prose p {
+  font-size: 19px;
+  line-height: 1.68;
+  color: #3f3a34;
+  margin: 0 0 24px;
+}
+.prose h2 {
+  font-size: 32px;
+  margin: 48px 0 18px;
+}
+.prose h3 {
+  font-size: 23px;
+  margin: 36px 0 12px;
+}
+.prose strong {
+  color: #2b2622;
+  font-weight: 700;
+}
+.prose a {
+  border-bottom: 1.5px solid var(--accent-soft, #ffe1d3);
+}
+.prose ul {
+  margin: 0 0 24px;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.prose li {
+  font-size: 18px;
+  line-height: 1.6;
+  color: #3f3a34;
+  padding-left: 30px;
+  position: relative;
+}
+.prose li::before {
+  content: '';
+  position: absolute;
+  left: 2px;
+  top: 9px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--accent, #ff6a3d);
+}

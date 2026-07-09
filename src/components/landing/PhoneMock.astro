@@ -1,0 +1,291 @@
+---
+// @zero:hidden
+// Decorative app-screen illustration for the hero. Not content-driven — it's an
+// illustrative mock of the Pip app, ported from the design comp.
+const todos = [
+  { label: "Drink a glass of water", time: "7:10", done: true },
+  { label: "10-minute walk", time: "8:20", done: true },
+  { label: "Read one page", time: "any time", done: false },
+  { label: "Text a friend", time: "18:00", done: true },
+];
+---
+
+<div class="wrap" aria-hidden="true">
+  <div class="float top">
+    <span class="accent-text">7-day</span> streak
+  </div>
+  <div class="float bottom">Nudge at 8:00 am ✦</div>
+
+  <div class="phone">
+    <div class="screen">
+      <div class="notch"></div>
+      <div class="statusbar">
+        <span>9:41</span>
+        <span class="signal">▪▪▪ ◗</span>
+      </div>
+      <div class="head">
+        <div>
+          <p class="date">Tuesday, Mar 24</p>
+          <h3>Good morning ☀</h3>
+        </div>
+        <div class="pfp"><span class="pfp-eyes"></span></div>
+      </div>
+      <div class="streak">
+        <div class="streak-top">
+          <span class="num">7</span>
+          <span class="lbl">day streak</span>
+        </div>
+        <p class="streak-sub">You've kept it up all week ✦</p>
+        <div class="bars">
+          {
+            Array.from({ length: 8 }).map((_, i) => (
+              <span class:list={{ dim: i === 7 }} />
+            ))
+          }
+        </div>
+      </div>
+      <p class="today">Today · 3 of 4 done</p>
+      <div class="list">
+        {
+          todos.map((t) => (
+            <div class:list={["row", { open: !t.done }]}>
+              {t.done ? <span class="check">✓</span> : <span class="empty" />}
+              <span class="row-label">{t.label}</span>
+              <span class="row-time">{t.time}</span>
+            </div>
+          ))
+        }
+      </div>
+      <div class="tabbar">
+        <span class="tab active"></span>
+        <span class="tab round"></span>
+        <span class="tab"></span>
+        <span class="tab round"></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .wrap {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+  }
+  .float {
+    position: absolute;
+    z-index: 3;
+    border-radius: 16px;
+    padding: 10px 14px;
+    font-weight: 700;
+    font-size: 14px;
+    box-shadow: 0 12px 26px rgba(43, 38, 34, 0.12);
+  }
+  .float.top {
+    top: -8px;
+    right: 6px;
+    background: #fff;
+    border: 1px solid rgba(43, 38, 34, 0.1);
+    animation: floaty 5s ease-in-out infinite;
+  }
+  .float.bottom {
+    bottom: 34px;
+    left: -6px;
+    background: #211e1b;
+    color: #fff;
+    font-weight: 600;
+    font-size: 13px;
+    box-shadow: 0 12px 26px rgba(43, 38, 34, 0.22);
+    animation: floaty2 6s ease-in-out infinite;
+    transform: rotate(-6deg);
+  }
+  .accent-text {
+    color: var(--accent, #ff6a3d);
+  }
+
+  .phone {
+    width: 322px;
+    background: #211e1b;
+    border-radius: 48px;
+    padding: 12px;
+    box-shadow:
+      0 40px 80px -20px rgba(43, 38, 34, 0.4),
+      0 0 0 1px rgba(43, 38, 34, 0.1);
+  }
+  .screen {
+    position: relative;
+    background: #fefcf8;
+    border-radius: 38px;
+    overflow: hidden;
+    height: 632px;
+    display: flex;
+    flex-direction: column;
+  }
+  .notch {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 26px;
+    background: #211e1b;
+    border-radius: 0 0 16px 16px;
+    z-index: 5;
+  }
+  .statusbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 24px 6px;
+    font-size: 13px;
+    font-weight: 700;
+  }
+  .head {
+    padding: 14px 22px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  .date {
+    font-size: 13px;
+    color: #a49a8f;
+    font-weight: 600;
+  }
+  .head h3 {
+    font-size: 27px;
+    margin: 2px 0 0;
+  }
+  .pfp {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: var(--accent-soft, #ffe1d3);
+    display: grid;
+    place-items: center;
+    border: 2px solid var(--accent, #ff6a3d);
+  }
+  .pfp-eyes {
+    width: 6px;
+    height: 6px;
+    background: #2b2622;
+    border-radius: 50%;
+    box-shadow: 8px 0 0 #2b2622;
+  }
+  .streak {
+    margin: 16px 22px 0;
+    background: var(--accent, #ff6a3d);
+    border-radius: 22px;
+    padding: 16px 18px;
+    color: #fff;
+    box-shadow: 0 8px 20px -6px var(--accent, #ff6a3d);
+  }
+  .streak-top {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+  }
+  .num {
+    font-family: "Bricolage Grotesque", system-ui, sans-serif;
+    font-weight: 800;
+    font-size: 40px;
+    line-height: 1;
+  }
+  .lbl {
+    font-weight: 600;
+    font-size: 15px;
+    opacity: 0.95;
+  }
+  .streak-sub {
+    font-size: 13px;
+    opacity: 0.9;
+    margin: 4px 0 12px;
+  }
+  .bars {
+    display: flex;
+    gap: 6px;
+  }
+  .bars span {
+    flex: 1;
+    height: 8px;
+    border-radius: 4px;
+    background: #fff;
+  }
+  .bars span.dim {
+    background: rgba(255, 255, 255, 0.35);
+  }
+  .today {
+    margin: 18px 22px 8px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #a49a8f;
+  }
+  .list {
+    padding: 0 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: #f6f1e7;
+    border-radius: 15px;
+    padding: 11px 13px;
+  }
+  .row.open {
+    background: #fff;
+    border: 1.5px dashed rgba(43, 38, 34, 0.16);
+  }
+  .check {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: var(--accent, #ff6a3d);
+    display: grid;
+    place-items: center;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 800;
+  }
+  .empty {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: 2px solid rgba(43, 38, 34, 0.2);
+  }
+  .row-label {
+    font-weight: 600;
+    font-size: 15px;
+    flex: 1;
+  }
+  .row-time {
+    font-size: 12px;
+    color: #a49a8f;
+  }
+  .tabbar {
+    margin-top: auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 14px 30px;
+    border-top: 1px solid rgba(43, 38, 34, 0.07);
+    background: #fff;
+  }
+  .tab {
+    width: 22px;
+    height: 22px;
+    border-radius: 7px;
+    border: 2px solid rgba(43, 38, 34, 0.18);
+  }
+  .tab.round {
+    border-radius: 50%;
+  }
+  .tab.active {
+    background: var(--accent, #ff6a3d);
+    border: none;
+  }
+</style>

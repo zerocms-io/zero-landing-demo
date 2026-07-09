@@ -1,0 +1,18 @@
+---
+---
+
+<div class="gallery"><slot /></div>
+
+<style>
+  .gallery {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin: 8px 0 12px;
+  }
+  @media (max-width: 560px) {
+    .gallery {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

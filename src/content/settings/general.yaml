@@ -1,0 +1,51 @@
+brand:
+  name: Pip
+  tagline: The gentle habit companion. Tiny habits, big good days — no guilt streaks required.
+contactEmail: hello@pip.app
+copyright: © 2026 Pip Labs, Inc. Made with care and a little bird.
+
+theme:
+  accent: Coral
+  showMascot: true
+
+nav:
+  - label: Home
+    href: /
+    variant: link
+  - label: Guides
+    href: /guides
+    variant: link
+  - label: Team
+    href: /team
+    variant: link
+  - label: Log in
+    href: "#"
+    variant: muted
+  - label: Get Pip free
+    href: /#cta
+    variant: button
+
+footer:
+  groups:
+    - title: Product
+      links:
+        - { label: Features, href: /#features }
+        - { label: How it works, href: /#how }
+        - { label: Pip Plus, href: "#" }
+        - { label: Download, href: "#" }
+    - title: Company
+      links:
+        - { label: Team, href: /team }
+        - { label: The science, href: /guides/science }
+        - { label: First week guide, href: /guides/first-week }
+        - { label: Careers, href: /team }
+    - title: Legal
+      links:
+        - { label: Privacy, href: "#" }
+        - { label: Terms, href: "#" }
+        - { label: FAQ, href: /#faq }
+        - { label: Contact, href: "#" }
+  socials:
+    - { label: X, href: "#" }
+    - { label: ig, href: "#" }
+    - { label: in, href: "#" }

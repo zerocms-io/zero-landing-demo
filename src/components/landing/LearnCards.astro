@@ -1,0 +1,74 @@
+---
+// @zero:hidden
+import { getCollection } from "astro:content";
+import GuideCard from "../GuideCard.astro";
+
+interface Props {
+  learn: {
+    eyebrow: string;
+    title: string;
+    allLink: { label: string; href: string };
+  };
+}
+const { learn } = Astro.props;
+
+const featured = (await getCollection("guides"))
+  .filter((g) => g.data.featured)
+  .sort((a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime())
+  .slice(0, 2);
+---
+
+<section class="learn">
+  <div class="head">
+    <div>
+      <p class="eyebrow">{learn.eyebrow}</p>
+      <h2>{learn.title}</h2>
+    </div>
+    <a class="all" href={learn.allLink.href}>{learn.allLink.label}</a>
+  </div>
+  <div class="grid">
+    {featured.map((g) => <GuideCard guide={g} />)}
+  </div>
+</section>
+
+<style>
+  .learn {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 92px 32px 0;
+  }
+  .head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+  .eyebrow {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent-ink, #c63f1b);
+    margin-bottom: 14px;
+  }
+  .head h2 {
+    font-size: clamp(32px, 4vw, 44px);
+  }
+  .all {
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--accent-ink, #c63f1b);
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  @media (max-width: 760px) {
+    .grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

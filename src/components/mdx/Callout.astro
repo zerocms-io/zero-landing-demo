@@ -1,0 +1,66 @@
+---
+interface Props {
+  icon: string;
+  title: string;
+  tone?: 'accent' | 'green';
+}
+const { icon, title, tone = 'accent' }: Props = Astro.props;
+---
+
+<aside class:list={['callout', tone]}>
+  <span class="icon">{icon}</span>
+  <div class="body">
+    <p class="title">{title}</p>
+    <div class="text"><slot /></div>
+  </div>
+</aside>
+
+<style>
+  .callout {
+    display: flex;
+    gap: 16px;
+    border-radius: 18px;
+    padding: 22px 24px;
+    margin: 8px 0 28px;
+  }
+  .callout.accent {
+    background: var(--accent-soft, #ffe1d3);
+  }
+  .callout.green {
+    background: #e7f5ec;
+  }
+  .icon {
+    flex-shrink: 0;
+    width: 34px;
+    height: 34px;
+    border-radius: 10px;
+    background: #fff;
+    display: grid;
+    place-items: center;
+    font-size: 17px;
+  }
+  .title {
+    font-family: 'Bricolage Grotesque', system-ui, sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    margin: 0 0 4px;
+  }
+  .accent .title {
+    color: var(--accent-ink, #c63f1b);
+  }
+  .green .title {
+    color: #1e7a4e;
+  }
+  /* Slotted markdown paragraph — override .prose defaults */
+  .text :global(p) {
+    font-size: 15.5px;
+    line-height: 1.55;
+    margin: 0;
+  }
+  .accent .text :global(p) {
+    color: #7a3a22;
+  }
+  .green .text :global(p) {
+    color: #2f5a43;
+  }
+</style>

@@ -1,0 +1,67 @@
+---
+// @zero:hidden
+interface Props {
+  values: { title: string; body: string; icon: string; iconBg?: string }[];
+}
+const { values } = Astro.props;
+---
+
+<section class="values">
+  <div class="grid">
+    {
+      values.map((v) => (
+        <div class="card">
+          <div class="icon" style={v.iconBg ? `background:${v.iconBg}` : ""}>
+            {v.icon}
+          </div>
+          <h3>{v.title}</h3>
+          <p>{v.body}</p>
+        </div>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  .values {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 36px 32px 20px;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  .card {
+    background: #fff;
+    border: 1px solid rgba(43, 38, 34, 0.08);
+    border-radius: 24px;
+    padding: 30px;
+    box-shadow: 0 14px 40px -26px rgba(43, 38, 34, 0.35);
+  }
+  .icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    background: var(--accent-soft, #ffe1d3);
+    display: grid;
+    place-items: center;
+    margin-bottom: 16px;
+    font-size: 20px;
+  }
+  h3 {
+    font-size: 21px;
+  }
+  p {
+    font-size: 15px;
+    color: #5c554d;
+    line-height: 1.55;
+    margin-top: 8px;
+  }
+  @media (max-width: 760px) {
+    .grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

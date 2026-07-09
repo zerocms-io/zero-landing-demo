@@ -1,0 +1,203 @@
+---
+// @zero:hidden
+import PhoneMock from "./PhoneMock.astro";
+
+interface Props {
+  hero: {
+    badge: string;
+    title: string;
+    body: string;
+    primaryCta: { label: string; href: string };
+    secondaryCta: { label: string; href: string };
+    disclaimer: string;
+    rating: { stars: number; text: string };
+  };
+}
+const { hero } = Astro.props;
+
+// Split a "{token}" out of the title so it can be rendered with the highlight underline.
+const m = hero.title.match(/^(.*)\{(.+?)\}(.*)$/);
+const titleParts = m ? { before: m[1], hl: m[2], after: m[3] } : null;
+
+// Bold the leading score in the rating text (e.g. "4.9 from 12,000+ …").
+const firstSpace = hero.rating.text.indexOf(" ");
+const ratingScore =
+  firstSpace > 0 ? hero.rating.text.slice(0, firstSpace) : hero.rating.text;
+const ratingRest = firstSpace > 0 ? hero.rating.text.slice(firstSpace) : "";
+---
+
+<section id="top" class="hero">
+  <span class="blob"></span>
+  <div class="col">
+    <span class="badge"><span class="dot"></span>{hero.badge}</span>
+    <h1>
+      {
+        titleParts ? (
+          <>
+            {titleParts.before}
+            <span class="hl">{titleParts.hl}</span>
+            {titleParts.after}
+          </>
+        ) : (
+          hero.title
+        )
+      }
+    </h1>
+    <p class="lead">{hero.body}</p>
+    <div class="ctas">
+      <a class="btn primary" href={hero.primaryCta.href}
+        >{hero.primaryCta.label}</a
+      >
+      <a class="btn ghost" href={hero.secondaryCta.href}>
+        {hero.secondaryCta.label}
+        <span class="play">▶</span>
+      </a>
+    </div>
+    <p class="disclaimer">{hero.disclaimer}</p>
+    <div class="rating">
+      <div class="stars">{"★".repeat(hero.rating.stars)}</div>
+      <span class="rating-text"><b>{ratingScore}</b>{ratingRest}</span>
+    </div>
+  </div>
+
+  <div class="col mock">
+    <PhoneMock />
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 76px 32px 40px;
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: 56px;
+    align-items: center;
+  }
+  .blob {
+    position: absolute;
+    top: 40px;
+    left: -80px;
+    width: 280px;
+    height: 280px;
+    background: var(--accent-soft, #ffe1d3);
+    border-radius: 50%;
+    filter: blur(8px);
+    opacity: 0.55;
+    z-index: 0;
+  }
+  .col {
+    position: relative;
+    z-index: 1;
+  }
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #fff;
+    border: 1px solid rgba(43, 38, 34, 0.1);
+    padding: 7px 14px 7px 10px;
+    border-radius: 999px;
+    font-size: 13.5px;
+    font-weight: 600;
+    box-shadow: 0 3px 12px rgba(43, 38, 34, 0.06);
+  }
+  .dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--accent, #ff6a3d);
+  }
+  h1 {
+    font-size: clamp(44px, 6vw, 74px);
+    margin: 22px 0 0;
+    line-height: 0.96;
+  }
+  .lead {
+    font-size: 20px;
+    line-height: 1.5;
+    color: #5c554d;
+    max-width: 490px;
+    margin: 24px 0 0;
+  }
+  .ctas {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin: 32px 0 0;
+    flex-wrap: wrap;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    font-size: 17px;
+    border-radius: 999px;
+  }
+  .btn.primary {
+    background: var(--accent, #ff6a3d);
+    color: #fff;
+    font-weight: 700;
+    padding: 16px 28px;
+    box-shadow: 0 6px 0 var(--accent-ink, #c63f1b);
+    transition: transform 0.15s;
+  }
+  .btn.primary:hover {
+    transform: translateY(-2px);
+  }
+  .btn.ghost {
+    background: #fff;
+    color: #2b2622;
+    font-weight: 600;
+    padding: 16px 26px;
+    border: 1px solid rgba(43, 38, 34, 0.12);
+  }
+  .play {
+    display: grid;
+    place-items: center;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: var(--accent-soft, #ffe1d3);
+    font-size: 11px;
+  }
+  .disclaimer {
+    margin: 16px 0 0;
+    font-size: 14px;
+    color: #8a827a;
+    font-weight: 500;
+  }
+  .rating {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 26px 0 0;
+  }
+  .stars {
+    display: flex;
+    gap: 3px;
+    color: var(--accent, #ff6a3d);
+    font-size: 18px;
+  }
+  .rating-text {
+    font-size: 14.5px;
+    color: #5c554d;
+  }
+  .rating-text b {
+    color: #2b2622;
+  }
+
+  @media (max-width: 900px) {
+    .hero {
+      grid-template-columns: 1fr;
+      gap: 40px;
+      padding: 48px 24px 24px;
+    }
+    .mock {
+      display: flex;
+      justify-content: center;
+    }
+  }
+</style>

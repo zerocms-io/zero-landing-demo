@@ -1,0 +1,122 @@
+---
+// @zero:hidden
+import { getEntry } from "astro:content";
+import PipLogo from "./PipLogo.astro";
+
+const settings = await getEntry("settings", "general");
+const { nav } = settings!.data;
+
+const links = nav.filter((n) => n.variant === "link");
+const actions = nav.filter((n) => n.variant !== "link");
+
+const path = Astro.url.pathname.replace(/\/$/, "") || "/";
+const isActive = (href: string) => {
+  const clean = href.split("#")[0].replace(/\/$/, "") || "/";
+  return clean === "/"
+    ? path === "/"
+    : path === clean || path.startsWith(clean + "/");
+};
+---
+
+<header>
+  <nav>
+    <PipLogo href="/" />
+    <div class="links">
+      {
+        links.map((l) => (
+          <a
+            href={l.href}
+            class:list={["nav-link", { active: isActive(l.href) }]}
+          >
+            {l.label}
+          </a>
+        ))
+      }
+    </div>
+    <div class="actions">
+      {
+        actions.map((a) =>
+          a.variant === "button" ? (
+            <a href={a.href} class="btn">
+              {a.label}
+            </a>
+          ) : (
+            <a href={a.href} class="muted">
+              {a.label}
+            </a>
+          ),
+        )
+      }
+    </div>
+  </nav>
+</header>
+
+<style>
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(252, 246, 236, 0.82);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(43, 38, 34, 0.07);
+  }
+  nav {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 16px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+  }
+  .links {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    font-weight: 500;
+    font-size: 15px;
+  }
+  .nav-link {
+    color: #4a433c;
+  }
+  .nav-link.active {
+    color: var(--accent-ink, #c63f1b);
+    font-weight: 700;
+  }
+  .actions {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .muted {
+    color: #4a433c;
+    font-weight: 600;
+    font-size: 15px;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--accent, #ff6a3d);
+    color: #fff;
+    font-weight: 600;
+    font-size: 15px;
+    padding: 11px 20px;
+    border-radius: 999px;
+    box-shadow: 0 4px 0 var(--accent-ink, #c63f1b);
+  }
+
+  @media (max-width: 760px) {
+    nav {
+      flex-wrap: wrap;
+      padding: 14px 20px;
+      gap: 14px;
+    }
+    .links {
+      order: 3;
+      width: 100%;
+      justify-content: center;
+      gap: 22px;
+    }
+  }
+</style>

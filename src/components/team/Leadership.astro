@@ -1,0 +1,121 @@
+---
+// @zero:hidden
+import { getTeam } from "../../lib/team";
+import Avatar from "../Avatar.astro";
+
+interface Props {
+  eyebrow: string;
+}
+const { eyebrow } = Astro.props;
+
+const leaders = (await getTeam()).filter((p) => p.data.group === "leadership");
+---
+
+<section class="leadership">
+  <p class="eyebrow">{eyebrow}</p>
+  <div class="grid">
+    {
+      leaders.map((p) => (
+        <div class="card">
+          <span class="avatar">
+            <Avatar
+              avatar={p.data.avatar}
+              initials={p.data.initials}
+              avatarBg={p.data.avatarBg}
+              avatarInk={p.data.avatarInk}
+              name={p.data.name}
+              fontSize={30}
+            />
+          </span>
+          <div>
+            <h3>{p.data.name}</h3>
+            <p class="role">{p.data.role}</p>
+            <p class="bio">{p.data.bio}</p>
+            {p.data.socials.length > 0 && (
+              <div class="socials">
+                {p.data.socials.map((s) => (
+                  <a href={s.href} class="social" aria-label={s.label}>
+                    {s.label}
+                  </a>
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  .leadership {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 56px 32px 0;
+  }
+  .eyebrow {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent-ink, #c63f1b);
+    margin-bottom: 22px;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  .card {
+    background: #fff;
+    border: 1px solid rgba(43, 38, 34, 0.08);
+    border-radius: 26px;
+    padding: 28px;
+    display: flex;
+    gap: 22px;
+    box-shadow: 0 14px 40px -26px rgba(43, 38, 34, 0.35);
+  }
+  .avatar {
+    flex-shrink: 0;
+    width: 88px;
+    height: 88px;
+    border-radius: 22px;
+    overflow: hidden;
+  }
+  h3 {
+    font-size: 22px;
+  }
+  .role {
+    font-size: 13.5px;
+    color: var(--accent-ink, #c63f1b);
+    font-weight: 600;
+    margin-top: 2px;
+  }
+  .bio {
+    font-size: 14.5px;
+    color: #5c554d;
+    margin-top: 10px;
+    line-height: 1.5;
+  }
+  .socials {
+    display: flex;
+    gap: 8px;
+    margin-top: 14px;
+  }
+  .social {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #f6f1e7;
+    display: grid;
+    place-items: center;
+    font-size: 12px;
+    font-weight: 700;
+    color: #5c554d;
+  }
+  @media (max-width: 760px) {
+    .grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

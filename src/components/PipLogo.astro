@@ -1,0 +1,67 @@
+---
+// @zero:hidden
+interface Props {
+  href?: string;
+  variant?: "nav" | "footer";
+}
+const { href = "/", variant = "nav" }: Props = Astro.props;
+const footer = variant === "footer";
+---
+
+<a class:list={["logo", { footer }]} href={href} aria-label="Pip — home">
+  <span class="mark">
+    <span class="eyes"></span>
+  </span>
+  <span class="wordmark">Pip</span>
+</a>
+
+<style>
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    color: #2b2622;
+  }
+  .mark {
+    display: grid;
+    place-items: center;
+    width: 38px;
+    height: 38px;
+    background: var(--accent, #ff6a3d);
+    border-radius: 14px 14px 16px 16px;
+    box-shadow: 0 6px 0 var(--accent-ink, #c63f1b);
+  }
+  .eyes {
+    width: 8px;
+    height: 8px;
+    background: #fff;
+    border-radius: 50%;
+    box-shadow: 11px 0 0 #fff;
+  }
+  .wordmark {
+    font-family: "Bricolage Grotesque", system-ui, sans-serif;
+    font-weight: 800;
+    font-size: 23px;
+    letter-spacing: -0.03em;
+  }
+
+  /* Footer variant — on the dark band */
+  .logo.footer {
+    color: #fdf7ec;
+  }
+  .footer .mark {
+    width: 36px;
+    height: 36px;
+    border-radius: 13px;
+    box-shadow: none;
+  }
+  .footer .eyes {
+    width: 7px;
+    height: 7px;
+    box-shadow: 10px 0 0 #fff;
+  }
+  .footer .wordmark {
+    font-size: 21px;
+    color: #fdf7ec;
+  }
+</style>

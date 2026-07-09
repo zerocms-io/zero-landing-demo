@@ -1,0 +1,146 @@
+hero:
+  badge: New — streaks that forgive you
+  title: Tiny habits, big {good} days.
+  body: Pip is the gentle habit companion that nudges — never nags. Build a routine that grows with you, one tiny check-in at a time.
+  primaryCta: { label: Get Pip — it's free, href: /#cta }
+  secondaryCta: { label: See how it works, href: /#how }
+  disclaimer: Free forever plan · No guilt streaks · iOS & Android
+  rating:
+    stars: 5
+    text: 4.9 from 12,000+ happy humans
+
+press:
+  eyebrow: Featured & loved by
+  logos:
+    - The Wildwood Times
+    - Homespun
+    - Northlight Weekly
+    - Cocoa & Co
+    - Field Notes
+    - Bright Studio
+
+features:
+  header:
+    eyebrow: Why it sticks
+    title: Everything you need to actually keep going.
+  items:
+    - title: Streaks that forgive you
+      body: Miss a day? Pip gives you a grace token instead of resetting to zero. Progress should feel kind, not punishing.
+      icon: "🔄"
+      colSpan: 2
+      tone: white
+      illustration: bars
+    - title: Meet Pip, your buddy
+      body: A friendly little companion that cheers you on, celebrates the small wins, and keeps you company on the slow days.
+      icon: "✦"
+      rowSpan: 2
+      tone: accent
+      illustration: mascot
+    - title: Gentle nudges
+      body: Reminders that arrive when you're most likely to say yes — not a barrage of alarms.
+      icon: "🔔"
+      tone: white
+      illustration: nudge
+    - title: See your growth
+      body: Warm, readable charts that show how far you've come — without the doom-scroll of numbers.
+      icon: "🌱"
+      tone: white
+      illustration: growth
+    - title: Routines, not to-do lists
+      body: Group habits into morning, focus, and wind-down flows. Pip walks you through each, one gentle step at a time.
+      icon: "🗂"
+      colSpan: 2
+      tone: cream
+      illustration: routines
+      items:
+        - 🌅 Morning flow
+        - ✎ Focus block
+        - 🌙 Wind down
+
+how:
+  header:
+    eyebrow: Three tiny steps
+    title: Start in about a minute.
+  steps:
+    - number: 1
+      title: Pick one tiny habit
+      body: Choose from 200+ starter habits or write your own. Start absurdly small — that's the trick.
+    - number: 2
+      title: Get a gentle nudge
+      body: Pip learns your rhythm and pings you at the moment you're most likely to follow through.
+    - number: 3
+      title: Watch it grow
+      body: Check in, keep your streak, and let small wins stack into a routine you're proud of.
+
+stats:
+  header:
+    eyebrow: The gentle approach works
+    title: Kindness beats willpower.
+  items:
+    - value: 92%
+      label: of new users keep their first habit past week two
+    - value: 3.4M
+      label: tiny habits checked off this month alone
+    - value: "0"
+      label: guilt trips, shame streaks, or red X's — ever
+
+testimonials:
+  header:
+    eyebrow: Happy humans
+    title: People are sticking with it.
+  items:
+    - quote: First habit app that didn't make me feel like a failure by day three. The grace tokens are genius.
+      name: Jordan M.
+      role: Nurse, Portland
+      initials: JM
+      avatarBg: "#ffd7a8"
+      avatarInk: "#9a5b1a"
+    - quote: Pip is unreasonably charming. I actually look forward to checking off my morning walk now.
+      name: Aïcha R.
+      role: Designer, Lyon
+      initials: AR
+      avatarBg: "#c9d4ff"
+      avatarInk: "#3a4aa0"
+      featured: true
+    - quote: I've tried them all. This is the only one still on my home screen six months later.
+      name: Deepak K.
+      role: Teacher, Austin
+      initials: DK
+      avatarBg: "#bfe6cd"
+      avatarInk: "#1e7a4e"
+
+teamTeaser:
+  eyebrow: The humans behind Pip
+  title: A tiny team that sweats the small stuff.
+  body: Nine gentle, curious people (plus one little bird) building the kindest way to keep a habit. Remote-first, four-day weeks, and a founder who reads every application.
+  cta: { label: Meet the whole team →, href: /team }
+  avatarCount: 4
+
+faq:
+  header:
+    eyebrow: Good questions
+    title: Before you ask.
+  items:
+    - question: Is Pip really free?
+      answer: Yes. The free plan covers unlimited habits, streaks, and nudges forever. Pip Plus adds routines, deeper insights, and cloud sync across devices for the price of a coffee a month.
+      defaultOpen: true
+    - question: What happens if I miss a day?
+      answer: Nothing scary. Pip hands you a grace token so your streak stays intact. Life happens — your progress shouldn't vanish because of one busy Tuesday.
+    - question: Which devices does it work on?
+      answer: Pip runs on iOS and Android, with a lightweight web dashboard for checking in from your laptop. Everything syncs the moment you're back online.
+    - question: Is my data private?
+      answer: Always. Your habits are yours. We never sell your data, and you can export or delete everything in two taps, no questions asked.
+
+learn:
+  eyebrow: From the Pip library
+  title: Learn the gentle way.
+  allLink: { label: Browse all guides →, href: /guides }
+
+cta:
+  title: Ready to start something tiny?
+  body: Join 500,000 people building gentler routines with Pip. It takes about a minute.
+  variant: accent
+  showMascot: true
+  buttons:
+    - { label: Download for iOS, href: "#" }
+    - { label: Get it on Android, href: "#" }

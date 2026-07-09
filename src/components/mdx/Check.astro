@@ -1,0 +1,36 @@
+---
+interface Props {
+  text: string;
+}
+const { text }: Props = Astro.props;
+---
+
+<div class="check">
+  <span class="box">✓</span>
+  <span class="text">{text}</span>
+</div>
+
+<style>
+  .check {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .box {
+    flex-shrink: 0;
+    width: 26px;
+    height: 26px;
+    border-radius: 8px;
+    background: #2fa36b;
+    display: grid;
+    place-items: center;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 800;
+  }
+  .text {
+    font-size: 16px;
+    color: #2f5a43;
+    font-weight: 500;
+  }
+</style>

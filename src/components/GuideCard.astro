@@ -1,0 +1,110 @@
+---
+// @zero:hidden
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+  guide: CollectionEntry<"guides">;
+}
+const { guide } = Astro.props;
+const { title, tagline, category, readTime, heroVariant } = guide.data;
+const meta = `${category} · ${readTime.replace(/\s*read$/, "")}`;
+---
+
+<a class="card" href={`/guides/${guide.id}`}>
+  <div class:list={["cover", `v-${heroVariant}`]}>
+    {
+      heroVariant === "forest" ? (
+        <span class="ring" />
+      ) : (
+        <div class="bars">
+          <span style="height:40px" />
+          <span style="height:66px" />
+          <span style="height:92px" />
+          <span style="height:120px" />
+        </div>
+      )
+    }
+  </div>
+  <div class="body">
+    <span class="meta">{meta}</span>
+    <h3>{title}</h3>
+    <p>{tagline}</p>
+  </div>
+</a>
+
+<style>
+  .card {
+    display: block;
+    color: #2b2622;
+    background: #fff;
+    border: 1px solid rgba(43, 38, 34, 0.08);
+    border-radius: 26px;
+    overflow: hidden;
+    box-shadow: 0 14px 40px -26px rgba(43, 38, 34, 0.35);
+    transition:
+      transform 0.15s ease,
+      box-shadow 0.15s ease;
+  }
+  .card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 22px 50px -26px rgba(43, 38, 34, 0.4);
+  }
+  .cover {
+    height: 180px;
+    display: grid;
+    place-items: center;
+  }
+  .v-accent {
+    background: linear-gradient(
+      135deg,
+      var(--accent, #ff6a3d),
+      var(--accent-soft, #ffe1d3)
+    );
+  }
+  .v-forest {
+    background: linear-gradient(135deg, #2fa36b, #d7f0e2);
+  }
+  .v-grape {
+    background: linear-gradient(135deg, #7c5cff, #e9e2ff);
+  }
+  .bars {
+    display: flex;
+    gap: 8px;
+    align-items: flex-end;
+  }
+  .bars span {
+    width: 16px;
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.9);
+  }
+  .bars span:nth-child(4) {
+    background: #fff;
+  }
+  .ring {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    border: 6px solid #fff;
+    border-right-color: transparent;
+    transform: rotate(-45deg);
+  }
+  .body {
+    padding: 26px 28px 30px;
+  }
+  .meta {
+    font-size: 12.5px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--accent-ink, #c63f1b);
+  }
+  h3 {
+    font-size: 24px;
+    margin: 10px 0 8px;
+  }
+  p {
+    font-size: 15.5px;
+    color: #5c554d;
+    line-height: 1.55;
+  }
+</style>

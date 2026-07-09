@@ -1,0 +1,37 @@
+---
+interface Props {
+  cite?: string;
+}
+const { cite }: Props = Astro.props;
+---
+
+<figure class="pq">
+  <blockquote>“<slot />”</blockquote>
+  {cite && <figcaption>{cite}</figcaption>}
+</figure>
+
+<style>
+  .pq {
+    margin: 40px 0;
+    text-align: center;
+  }
+  blockquote {
+    margin: 0;
+  }
+  /* slotted markdown paragraph → the quote itself */
+  .pq :global(p) {
+    display: inline;
+    font-family: 'Bricolage Grotesque', system-ui, sans-serif;
+    font-weight: 700;
+    font-size: 29px;
+    line-height: 1.26;
+    color: #2b2622;
+    letter-spacing: -0.02em;
+    margin: 0;
+  }
+  figcaption {
+    font-size: 14.5px;
+    color: #8a827a;
+    margin-top: 16px;
+  }
+</style>

@@ -1,0 +1,128 @@
+---
+// @zero:hidden
+import { getEntry } from "astro:content";
+import PipLogo from "./PipLogo.astro";
+
+const settings = await getEntry("settings", "general");
+const { brand, contactEmail, copyright, footer } = settings!.data;
+---
+
+<footer>
+  <div class="inner">
+    <div class="brand">
+      <PipLogo href="/" variant="footer" />
+      <p class="tagline">{brand.tagline}</p>
+      {
+        footer.socials.length > 0 && (
+          <div class="socials">
+            {footer.socials.map((s) => (
+              <a href={s.href} class="social" aria-label={s.label}>
+                {s.label}
+              </a>
+            ))}
+          </div>
+        )
+      }
+    </div>
+    {
+      footer.groups.map((group) => (
+        <div class="group">
+          <p class="group-title">{group.title}</p>
+          <div class="group-links">
+            {group.links.map((l) => (
+              <a href={l.href}>{l.label}</a>
+            ))}
+          </div>
+        </div>
+      ))
+    }
+  </div>
+  <div class="baseline">
+    <span>{copyright}</span>
+    <a href={`mailto:${contactEmail}`}>{contactEmail}</a>
+  </div>
+</footer>
+
+<style>
+  footer {
+    background: #211e1b;
+    color: #c9c0b4;
+    padding: 64px 0 40px;
+  }
+  .inner {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 32px;
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr 1fr;
+    gap: 40px;
+  }
+  .tagline {
+    font-size: 14.5px;
+    line-height: 1.6;
+    margin-top: 16px;
+    max-width: 280px;
+  }
+  .socials {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+  }
+  .social {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: rgba(253, 247, 236, 0.1);
+    display: grid;
+    place-items: center;
+    font-weight: 700;
+    font-size: 13px;
+    color: #fdf7ec;
+  }
+  .group-title {
+    font-family: "Bricolage Grotesque", system-ui, sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    color: #fdf7ec;
+    margin-bottom: 16px;
+  }
+  .group-links {
+    display: flex;
+    flex-direction: column;
+    gap: 11px;
+    font-size: 14.5px;
+  }
+  .group-links a {
+    color: #c9c0b4;
+  }
+  .group-links a:hover {
+    color: var(--accent, #ff6a3d);
+  }
+  .baseline {
+    max-width: 1180px;
+    margin: 44px auto 0;
+    padding: 24px 32px 0;
+    border-top: 1px solid rgba(253, 247, 236, 0.1);
+    display: flex;
+    justify-content: space-between;
+    font-size: 13.5px;
+    color: #8f867a;
+  }
+  .baseline a {
+    color: #8f867a;
+  }
+
+  @media (max-width: 760px) {
+    .inner {
+      grid-template-columns: 1fr 1fr;
+      gap: 32px 24px;
+    }
+    .brand {
+      grid-column: 1 / -1;
+    }
+    .baseline {
+      flex-direction: column;
+      gap: 8px;
+    }
+  }
+</style>

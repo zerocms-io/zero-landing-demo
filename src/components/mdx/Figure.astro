@@ -1,0 +1,51 @@
+---
+interface Props {
+  variant?: 'nudge' | 'streak';
+  caption: string;
+}
+const { variant = 'nudge', caption }: Props = Astro.props;
+---
+
+<figure class="fig">
+  <div class:list={['visual', variant]}>
+    {variant === 'streak' ? <span class="seven">7</span> : <span class="ring"></span>}
+  </div>
+  <figcaption>{caption}</figcaption>
+</figure>
+
+<style>
+  .fig {
+    margin: 0;
+  }
+  .visual {
+    border-radius: 18px;
+    height: 200px;
+    display: grid;
+    place-items: center;
+  }
+  .visual.nudge {
+    background: linear-gradient(150deg, #e9ecff, #c9d4ff);
+  }
+  .visual.streak {
+    background: linear-gradient(150deg, var(--accent-soft, #ffe1d3), var(--accent, #ff6a3d));
+  }
+  .ring {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 5px solid #3a4aa0;
+    border-right-color: transparent;
+    transform: rotate(-45deg);
+  }
+  .seven {
+    font-family: 'Bricolage Grotesque', system-ui, sans-serif;
+    font-weight: 800;
+    font-size: 44px;
+    color: #fff;
+  }
+  figcaption {
+    font-size: 13px;
+    color: #8a827a;
+    margin-top: 8px;
+  }
+</style>

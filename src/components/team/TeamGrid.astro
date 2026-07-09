@@ -1,0 +1,128 @@
+---
+// @zero:hidden
+import { getTeam } from "../../lib/team";
+import Avatar from "../Avatar.astro";
+
+interface Props {
+  eyebrow: string;
+  hiringCard: { title: string; body: string };
+}
+const { eyebrow, hiringCard } = Astro.props;
+
+const flock = (await getTeam()).filter((p) => p.data.group === "flock");
+---
+
+<section class="flock">
+  <p class="eyebrow">{eyebrow}</p>
+  <div class="grid">
+    {
+      flock.map((p) => (
+        <div class="card">
+          <span class="avatar">
+            <Avatar
+              avatar={p.data.avatar}
+              initials={p.data.initials}
+              avatarBg={p.data.avatarBg}
+              avatarInk={p.data.avatarInk}
+              name={p.data.name}
+              fontSize={26}
+            />
+          </span>
+          <h3>{p.data.name}</h3>
+          <p class="role">{p.data.role}</p>
+          <p class="bio">{p.data.bio}</p>
+        </div>
+      ))
+    }
+    <div class="card hiring">
+      <div class="plus">+</div>
+      <h3>{hiringCard.title}</h3>
+      <p class="hbody">{hiringCard.body}</p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .flock {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 44px 32px 20px;
+  }
+  .eyebrow {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent-ink, #c63f1b);
+    margin-bottom: 22px;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+  .card {
+    background: #fff;
+    border: 1px solid rgba(43, 38, 34, 0.08);
+    border-radius: 24px;
+    padding: 26px;
+    text-align: center;
+  }
+  .avatar {
+    display: block;
+    width: 76px;
+    height: 76px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0 auto 16px;
+  }
+  h3 {
+    font-size: 19px;
+  }
+  .role {
+    font-size: 13.5px;
+    color: var(--accent-ink, #c63f1b);
+    font-weight: 600;
+    margin-top: 2px;
+  }
+  .bio {
+    font-size: 13.5px;
+    color: #5c554d;
+    margin-top: 10px;
+    line-height: 1.45;
+  }
+  .hiring {
+    background: var(--accent-soft, #ffe1d3);
+    border: 1px dashed var(--accent, #ff6a3d);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .plus {
+    width: 76px;
+    height: 76px;
+    border-radius: 50%;
+    background: #fff;
+    display: grid;
+    place-items: center;
+    font-size: 32px;
+    color: var(--accent, #ff6a3d);
+    margin: 0 auto 16px;
+  }
+  .hbody {
+    font-size: 13.5px;
+    color: #8a5f4f;
+    margin-top: 8px;
+    line-height: 1.45;
+  }
+  @media (max-width: 900px) {
+    .grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (max-width: 520px) {
+    .grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

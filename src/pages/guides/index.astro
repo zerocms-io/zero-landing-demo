@@ -1,0 +1,93 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import GuideCard from '../../components/GuideCard.astro';
+
+const guides = (await getCollection('guides')).sort(
+  (a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime()
+);
+---
+
+<BaseLayout
+  title="Pip — Guides"
+  description="The Pip library: gentle, science-backed guides to building habits that stick."
+>
+  <section class="head">
+    <span class="blob"></span>
+    <div class="inner">
+      <p class="eyebrow">From the Pip library</p>
+      <h1>Learn the gentle way.</h1>
+      <p class="lead">
+        Short, science-backed reads on building habits that actually stick — no willpower required.
+      </p>
+    </div>
+  </section>
+
+  <section class="grid-wrap">
+    <div class="grid">
+      {guides.map((g) => <GuideCard guide={g} />)}
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .head {
+    position: relative;
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 72px 32px 24px;
+    text-align: center;
+  }
+  .blob {
+    position: absolute;
+    top: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 320px;
+    height: 240px;
+    background: var(--accent-soft, #ffe1d3);
+    border-radius: 50%;
+    filter: blur(10px);
+    opacity: 0.5;
+    z-index: 0;
+  }
+  .inner {
+    position: relative;
+    z-index: 1;
+    max-width: 640px;
+    margin: 0 auto;
+  }
+  .eyebrow {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent-ink, #c63f1b);
+    margin-bottom: 14px;
+  }
+  h1 {
+    font-size: clamp(40px, 6vw, 60px);
+  }
+  .lead {
+    font-size: 19px;
+    color: #5c554d;
+    line-height: 1.5;
+    margin: 20px auto 0;
+    max-width: 500px;
+  }
+  .grid-wrap {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 40px 32px 88px;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  @media (max-width: 760px) {
+    .grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
