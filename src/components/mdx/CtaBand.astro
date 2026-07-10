@@ -27,38 +27,38 @@ const mascot =
 
 <div class:list={["cta-shell", { contained }]}>
   <div class:list={["band", variant]}>
-  {
-    variant === "accent" && (
-      <>
-        <span class="blob a" />
-        <span class="blob b" />
-      </>
-    )
-  }
-  {
-    mascot && (
-      <div class="mascot-wrap">
-        <PipMascot scale={0.7} cheeks={false} />
-      </div>
-    )
-  }
-  {variant === "accent" ? <h2>{title}</h2> : <h3>{title}</h3>}
-  <div class="lede"><slot /></div>
-  <div class="buttons">
     {
-      buttons.map((b, i) => (
-        <a
-          href={b.href}
-          class:list={[
-            "btn",
-            variant === "dark" ? "accent" : i === 0 ? "dark" : "white",
-          ]}
-        >
-          {b.label}
-        </a>
-      ))
+      variant === "accent" && (
+        <>
+          <span class="blob a" />
+          <span class="blob b" />
+        </>
+      )
     }
-  </div>
+    {
+      mascot && (
+        <div class="mascot-wrap">
+          <PipMascot scale={0.7} cheeks={false} />
+        </div>
+      )
+    }
+    {variant === "accent" ? <h2>{title}</h2> : <h3>{title}</h3>}
+    <div class="lede"><slot /></div>
+    <div class="buttons">
+      {
+        buttons.map((b, i) => (
+          <a
+            href={b.href}
+            class:list={[
+              "btn",
+              variant === "dark" ? "accent" : i === 0 ? "dark" : "white",
+            ]}
+          >
+            {b.label}
+          </a>
+        ))
+      }
+    </div>
   </div>
 </div>
 

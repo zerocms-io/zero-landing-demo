@@ -2,12 +2,12 @@
 interface Props {
   icon: string;
   title: string;
-  tone?: 'accent' | 'green';
+  tone?: "accent" | "green";
 }
-const { icon, title, tone = 'accent' }: Props = Astro.props;
+const { icon, title, tone = "accent" }: Props = Astro.props;
 ---
 
-<aside class:list={['callout', tone]}>
+<aside class:list={["callout", tone]}>
   <span class="icon">{icon}</span>
   <div class="body">
     <p class="title">{title}</p>
@@ -40,7 +40,7 @@ const { icon, title, tone = 'accent' }: Props = Astro.props;
     font-size: 17px;
   }
   .title {
-    font-family: 'Bricolage Grotesque', system-ui, sans-serif;
+    font-family: "Bricolage Grotesque", system-ui, sans-serif;
     font-weight: 700;
     font-size: 16px;
     margin: 0 0 4px;

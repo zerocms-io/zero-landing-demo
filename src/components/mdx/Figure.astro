@@ -1,14 +1,20 @@
 ---
 interface Props {
-  variant?: 'nudge' | 'streak';
+  variant?: "nudge" | "streak";
   caption: string;
 }
-const { variant = 'nudge', caption }: Props = Astro.props;
+const { variant = "nudge", caption }: Props = Astro.props;
 ---
 
 <figure class="fig">
-  <div class:list={['visual', variant]}>
-    {variant === 'streak' ? <span class="seven">7</span> : <span class="ring"></span>}
+  <div class:list={["visual", variant]}>
+    {
+      variant === "streak" ? (
+        <span class="seven">7</span>
+      ) : (
+        <span class="ring" />
+      )
+    }
   </div>
   <figcaption>{caption}</figcaption>
 </figure>
@@ -27,7 +33,11 @@ const { variant = 'nudge', caption }: Props = Astro.props;
     background: linear-gradient(150deg, #e9ecff, #c9d4ff);
   }
   .visual.streak {
-    background: linear-gradient(150deg, var(--accent-soft, #ffe1d3), var(--accent, #ff6a3d));
+    background: linear-gradient(
+      150deg,
+      var(--accent-soft, #ffe1d3),
+      var(--accent, #ff6a3d)
+    );
   }
   .ring {
     width: 60px;
@@ -38,7 +48,7 @@ const { variant = 'nudge', caption }: Props = Astro.props;
     transform: rotate(-45deg);
   }
   .seven {
-    font-family: 'Bricolage Grotesque', system-ui, sans-serif;
+    font-family: "Bricolage Grotesque", system-ui, sans-serif;
     font-weight: 800;
     font-size: 44px;
     color: #fff;

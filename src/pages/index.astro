@@ -1,18 +1,18 @@
 ---
-import { getEntry } from 'astro:content';
-import BaseLayout from '../layouts/BaseLayout.astro';
-import Hero from '../components/landing/Hero.astro';
-import PressMarquee from '../components/landing/PressMarquee.astro';
-import FeaturesBento from '../components/landing/FeaturesBento.astro';
-import HowItWorks from '../components/landing/HowItWorks.astro';
-import StatsBand from '../components/landing/StatsBand.astro';
-import Testimonials from '../components/landing/Testimonials.astro';
-import TeamTeaser from '../components/landing/TeamTeaser.astro';
-import Faq from '../components/landing/Faq.astro';
-import LearnCards from '../components/landing/LearnCards.astro';
-import CtaBand from '../components/mdx/CtaBand.astro';
+import { getEntry } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Hero from "../components/landing/Hero.astro";
+import PressMarquee from "../components/landing/PressMarquee.astro";
+import FeaturesBento from "../components/landing/FeaturesBento.astro";
+import HowItWorks from "../components/landing/HowItWorks.astro";
+import StatsBand from "../components/landing/StatsBand.astro";
+import Testimonials from "../components/landing/Testimonials.astro";
+import TeamTeaser from "../components/landing/TeamTeaser.astro";
+import Faq from "../components/landing/Faq.astro";
+import LearnCards from "../components/landing/LearnCards.astro";
+import CtaBand from "../components/mdx/CtaBand.astro";
 
-const home = await getEntry('home', 'home');
+const home = await getEntry("home", "home");
 const d = home!.data;
 ---
 

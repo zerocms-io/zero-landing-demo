@@ -1,12 +1,12 @@
 ---
-import type { CollectionEntry } from 'astro:content';
-import { getEntry } from 'astro:content';
-import BaseLayout from './BaseLayout.astro';
-import CtaBand from '../components/mdx/CtaBand.astro';
-import Avatar from '../components/Avatar.astro';
+import type { CollectionEntry } from "astro:content";
+import { getEntry } from "astro:content";
+import BaseLayout from "./BaseLayout.astro";
+import CtaBand from "../components/mdx/CtaBand.astro";
+import Avatar from "../components/Avatar.astro";
 
 interface Props {
-  guide: CollectionEntry<'guides'>;
+  guide: CollectionEntry<"guides">;
 }
 const { guide } = Astro.props;
 const d = guide.data;
@@ -14,18 +14,21 @@ const d = guide.data;
 const author = await getEntry(d.author);
 const related = d.related ? await getEntry(d.related) : null;
 
-const dateLabel = d.publishDate.toLocaleDateString('en-US', {
-  month: 'short',
-  day: 'numeric',
-  year: 'numeric',
+const dateLabel = d.publishDate.toLocaleDateString("en-US", {
+  month: "short",
+  day: "numeric",
+  year: "numeric",
 });
 ---
 
-<BaseLayout title={`Pip — ${d.title.replace(/\.$/, '')}`} description={d.tagline}>
+<BaseLayout
+  title={`Pip — ${d.title.replace(/\.$/, "")}`}
+  description={d.tagline}
+>
   <article class="header">
     <a class="back" href="/">← Back home</a>
     <div class="tags">
-      <span class:list={['pill', d.categoryTone]}>{d.category}</span>
+      <span class:list={["pill", d.categoryTone]}>{d.category}</span>
       <span class="read">{d.readTime}</span>
     </div>
     <h1>{d.title}</h1>
@@ -47,13 +50,13 @@ const dateLabel = d.publishDate.toLocaleDateString('en-US', {
     </div>
     {
       d.heroCaption && (
-        <div class:list={['hero-fig', `v-${d.heroVariant}`]}>
+        <div class:list={["hero-fig", `v-${d.heroVariant}`]}>
           <div class="bars">
-            <span style="height:60px"></span>
-            <span style="height:96px"></span>
-            <span style="height:130px"></span>
-            <span style="height:170px"></span>
-            <span style="height:210px"></span>
+            <span style="height:60px" />
+            <span style="height:96px" />
+            <span style="height:130px" />
+            <span style="height:170px" />
+            <span style="height:210px" />
           </div>
           <span class="cap">{d.heroCaption}</span>
         </div>
@@ -67,9 +70,10 @@ const dateLabel = d.publishDate.toLocaleDateString('en-US', {
     <CtaBand
       variant="dark"
       title="Ready to start one tiny habit?"
-      buttons={[{ label: 'Get Pip free →', href: '/#cta' }]}
+      buttons={[{ label: "Get Pip free →", href: "/#cta" }]}
     >
-      Put it to work in about a minute. Pip is free, gentle, and quietly effective.
+      Put it to work in about a minute. Pip is free, gentle, and quietly
+      effective.
     </CtaBand>
   </section>
 
@@ -80,7 +84,7 @@ const dateLabel = d.publishDate.toLocaleDateString('en-US', {
         <a class="rel-card" href={`/guides/${related.id}`}>
           <div>
             <p class="rel-cat">{related.data.category}</p>
-            <p class="rel-title">{related.data.title.replace(/\.$/, '')}</p>
+            <p class="rel-title">{related.data.title.replace(/\.$/, "")}</p>
           </div>
           <span class="arrow">→</span>
         </a>
@@ -170,7 +174,11 @@ const dateLabel = d.publishDate.toLocaleDateString('en-US', {
     place-items: center;
   }
   .v-accent {
-    background: linear-gradient(135deg, var(--accent, #ff6a3d), var(--accent-soft, #ffe1d3));
+    background: linear-gradient(
+      135deg,
+      var(--accent, #ff6a3d),
+      var(--accent-soft, #ffe1d3)
+    );
   }
   .v-forest {
     background: linear-gradient(135deg, #2fa36b, #d7f0e2);
@@ -248,7 +256,7 @@ const dateLabel = d.publishDate.toLocaleDateString('en-US', {
     margin-bottom: 6px;
   }
   .rel-title {
-    font-family: 'Bricolage Grotesque', system-ui, sans-serif;
+    font-family: "Bricolage Grotesque", system-ui, sans-serif;
     font-weight: 700;
     font-size: 21px;
   }

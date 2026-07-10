@@ -10,7 +10,7 @@ html {
 
 body {
   margin: 0;
-  font-family: 'Instrument Sans', system-ui, sans-serif;
+  font-family: "Instrument Sans", system-ui, sans-serif;
   color: #2b2622;
   background: #fcf6ec;
   -webkit-font-smoothing: antialiased;
@@ -29,7 +29,7 @@ h1,
 h2,
 h3,
 h4 {
-  font-family: 'Bricolage Grotesque', system-ui, sans-serif;
+  font-family: "Bricolage Grotesque", system-ui, sans-serif;
   margin: 0;
   font-weight: 800;
   letter-spacing: -0.02em;
@@ -59,20 +59,39 @@ details summary::-webkit-details-marker {
 
 /* ── Keyframes ──────────────────────────────────────────────────────────────── */
 @keyframes pipbob {
-  0%, 100% { transform: translateY(0) rotate(-2deg); }
-  50% { transform: translateY(-10px) rotate(2deg); }
+  0%,
+  100% {
+    transform: translateY(0) rotate(-2deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(2deg);
+  }
 }
 @keyframes floaty {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-14px); }
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-14px);
+  }
 }
 @keyframes floaty2 {
-  0%, 100% { transform: translateY(0) rotate(-6deg); }
-  50% { transform: translateY(-10px) rotate(-6deg); }
+  0%,
+  100% {
+    transform: translateY(0) rotate(-6deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(-6deg);
+  }
 }
 @keyframes marquee {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
 }
 
 /* ── Article prose (guide bodies) ───────────────────────────────────────────── */
@@ -113,7 +132,7 @@ details summary::-webkit-details-marker {
   position: relative;
 }
 .prose li::before {
-  content: '';
+  content: "";
   position: absolute;
   left: 2px;
   top: 9px;

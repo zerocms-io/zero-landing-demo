@@ -1,9 +1,9 @@
 ---
-import { getEntry } from 'astro:content';
-import Nav from '../components/Nav.astro';
-import Footer from '../components/Footer.astro';
-import { themeVars } from '../lib/theme';
-import '../styles/global.css';
+import { getEntry } from "astro:content";
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
+import { themeVars } from "../lib/theme";
+import "../styles/global.css";
 
 interface Props {
   title: string;
@@ -11,7 +11,7 @@ interface Props {
 }
 const { title, description }: Props = Astro.props;
 
-const settings = await getEntry('settings', 'general');
+const settings = await getEntry("settings", "general");
 const { theme, brand } = settings!.data;
 const desc = description ?? brand.tagline;
 ---

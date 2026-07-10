@@ -18,13 +18,13 @@ Point Zero at the repo and your content collections become editable, with valida
 
 All content lives in `src/content/` and is typed in [`src/content.config.ts`](src/content.config.ts):
 
-| Collection | Type | Content |
-| :--------- | :--- | :------ |
+| Collection | Type             | Content                                        |
+| :--------- | :--------------- | :--------------------------------------------- |
 | `settings` | Singleton (YAML) | Global site config — brand, nav, footer, theme |
-| `home`     | Singleton (YAML) | The entire landing page |
-| `teamPage` | Singleton (YAML) | The team page |
-| `team`     | List (YAML)      | People, with photos and bios |
-| `guides`   | MDX              | Long-form articles |
+| `home`     | Singleton (YAML) | The entire landing page                        |
+| `teamPage` | Singleton (YAML) | The team page                                  |
+| `team`     | List (YAML)      | People, with photos and bios                   |
+| `guides`   | MDX              | Long-form articles                             |
 
 ## Project structure
 
@@ -46,13 +46,13 @@ All content lives in `src/content/` and is typed in [`src/content.config.ts`](sr
 
 All commands are run from the root of the project:
 
-| Command             | Action                                       |
-| :------------------ | :------------------------------------------- |
-| `npm install`       | Install dependencies                         |
+| Command             | Action                                         |
+| :------------------ | :--------------------------------------------- |
+| `npm install`       | Install dependencies                           |
 | `npm run dev`       | Start the local dev server at `localhost:4321` |
-| `npm run build`     | Build the production site to `./dist/`       |
-| `npm run preview`   | Preview the build locally before deploying   |
-| `npm run astro ...` | Run Astro CLI commands                       |
+| `npm run build`     | Build the production site to `./dist/`         |
+| `npm run preview`   | Preview the build locally before deploying     |
+| `npm run astro ...` | Run Astro CLI commands                         |
 
 ## Learn more
 

@@ -3,18 +3,19 @@ title: "Pip — The team"
 description: "The tiny, remote-first team building the gentlest way to keep a habit."
 ---
 
-import TeamHero from '../../components/mdx/TeamHero.astro';
-import Values from '../../components/mdx/Values.astro';
-import Leadership from '../../components/mdx/Leadership.astro';
-import TeamGrid from '../../components/mdx/TeamGrid.astro';
-import OpenRoles from '../../components/mdx/OpenRoles.astro';
-import CtaBand from '../../components/mdx/CtaBand.astro';
+import TeamHero from "../../components/mdx/TeamHero.astro";
+import Values from "../../components/mdx/Values.astro";
+import Leadership from "../../components/mdx/Leadership.astro";
+import TeamGrid from "../../components/mdx/TeamGrid.astro";
+import OpenRoles from "../../components/mdx/OpenRoles.astro";
+import CtaBand from "../../components/mdx/CtaBand.astro";
 
 <TeamHero
   badge="We're a team of 9 (plus one little bird)"
   title="The humans behind your {gentlest} habit."
 >
-  We're a tiny, remote-first team obsessed with one idea — that progress should feel kind. Here's who's sweating the small stuff.
+  We're a tiny, remote-first team obsessed with one idea — that progress should
+  feel kind. Here's who's sweating the small stuff.
 </TeamHero>
 
 <Values
@@ -43,7 +44,10 @@ import CtaBand from '../../components/mdx/CtaBand.astro';
 
 <TeamGrid
   eyebrow="The rest of the flock"
-  hiringCard={{ title: "This could be you", body: "We're hiring gentle, curious people." }}
+  hiringCard={{
+    title: "This could be you",
+    body: "We're hiring gentle, curious people.",
+  }}
 />
 
 <OpenRoles
@@ -51,9 +55,27 @@ import CtaBand from '../../components/mdx/CtaBand.astro';
   title="Open roles"
   note="Remote-first, four-day weeks, and a founder who reads every application."
   items={[
-    { title: "Senior iOS Engineer", department: "Engineering", location: "Remote", type: "Full-time", href: "#" },
-    { title: "Product Designer", department: "Design", location: "Remote (EU/US)", type: "Full-time", href: "#" },
-    { title: "Community Lead", department: "Community", location: "Remote", type: "Part-time", href: "#" },
+    {
+      title: "Senior iOS Engineer",
+      department: "Engineering",
+      location: "Remote",
+      type: "Full-time",
+      href: "#",
+    },
+    {
+      title: "Product Designer",
+      department: "Design",
+      location: "Remote (EU/US)",
+      type: "Full-time",
+      href: "#",
+    },
+    {
+      title: "Community Lead",
+      department: "Community",
+      location: "Remote",
+      type: "Part-time",
+      href: "#",
+    },
   ]}
 />
 
@@ -67,5 +89,6 @@ import CtaBand from '../../components/mdx/CtaBand.astro';
     { label: "See open roles", href: "#" },
   ]}
 >
-  Try the app the whole flock pours its heart into. It's free, and it takes about a minute.
+  Try the app the whole flock pours its heart into. It's free, and it takes
+  about a minute.
 </CtaBand>
