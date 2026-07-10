@@ -2,7 +2,7 @@
 
 A public demo site for **[Zero](https://www.zerocms.io)** — the CMS that turns any Astro codebase into a fully editable site with no integration work.
 
-This project is a marketing site (landing page, team page, and a set of MDX guides) built with [Astro 7](https://astro.build) and [content collections](https://docs.astro.build/en/guides/content-collections/). Every piece of content on the site — hero copy, features, testimonials, FAQs, team members, and long-form guides — is defined as a content collection and can be managed and updated through Zero.
+This project is a marketing site (landing page, composable MDX pages, and a set of MDX guides) built with [Astro 7](https://astro.build) and [content collections](https://docs.astro.build/en/guides/content-collections/). Every piece of content on the site — hero copy, features, testimonials, FAQs, team members, and long-form guides — is defined as a content collection and can be managed and updated through Zero.
 
 ## No integration required
 
@@ -18,13 +18,13 @@ Point Zero at the repo and your content collections become editable, with valida
 
 All content lives in `src/content/` and is typed in [`src/content.config.ts`](src/content.config.ts):
 
-| Collection | Type             | Content                                        |
-| :--------- | :--------------- | :--------------------------------------------- |
-| `settings` | Singleton (YAML) | Global site config — brand, nav, footer, theme |
-| `home`     | Singleton (YAML) | The entire landing page                        |
-| `teamPage` | Singleton (YAML) | The team page                                  |
-| `team`     | List (YAML)      | People, with photos and bios                   |
-| `guides`   | MDX              | Long-form articles                             |
+| Collection | Type             | Content                                            |
+| :--------- | :--------------- | :------------------------------------------------- |
+| `settings` | Singleton (YAML) | Global site config — brand, nav, footer, theme     |
+| `home`     | Singleton (YAML) | The entire landing page                            |
+| `pages`    | MDX              | Composed marketing pages (e.g. team, guides index) |
+| `team`     | List (YAML)      | People, with photos and bios                       |
+| `guides`   | MDX              | Long-form articles                                 |
 
 ## Project structure
 
@@ -32,7 +32,7 @@ All content lives in `src/content/` and is typed in [`src/content.config.ts`](sr
 /
 ├── public/                 # static assets
 ├── src/
-│   ├── components/         # UI components (landing, team, mdx, shared)
+│   ├── components/         # UI components (landing, mdx, and shared)
 │   ├── content/           # content collection data (YAML + MDX)
 │   ├── content.config.ts  # collection schemas
 │   ├── layouts/
